@@ -14,14 +14,17 @@ setup(
     version='0.0.0',  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
     author='hukkinj1',
     author_email='hukkinj1@users.noreply.github.com',
-    description='Cosmos utilities',
+    description='Tools for Cosmos wallet management and offline transaction signing',
     url='https://github.com/hukkinj1/cosmospy',
     packages=['cosmospy'],
     package_data={'cosmospy': ['py.typed']},
     zip_safe=False,  # For mypy to be able to find the installed package
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
-    install_requires=['secp256k1==0.13.2'],
+    install_requires=[
+        'secp256k1==0.13.2',
+        'bech32==1.1.0',
+    ],
     python_requires='>=3.6',
     classifiers=['Typing :: Typed'],
 )

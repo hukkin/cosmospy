@@ -1,0 +1,21 @@
+dist: xenial
+language: python
+python:
+  - '3.7'
+stages:
+  - build
+  - static-checks
+  - test
+jobs:
+  include:
+    - stage: build
+      script:
+        - python setup.py install
+    - stage: static-checks
+      script:
+        - flake8 cosmospy/ tests/ setup.py
+        - mypy cosmospy/ tests/ setup.py
+    - stage: test
+      script:
+        - coverage run -m pytest
+        - codecov
