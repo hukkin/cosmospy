@@ -1,0 +1,7 @@
+default_language_version:
+    python: python3.7
+repos:
+-   repo: https://github.com/python/black
+    rev: stable
+    hooks:
+    - id: black

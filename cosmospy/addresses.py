@@ -8,9 +8,9 @@ import bech32
 def generate_wallet() -> Dict[str, str]:
     privkey = PrivateKey().serialize()
     return {
-        'private_key': privkey,
-        'public_key': privkey_to_pubkey(privkey),
-        'address': privkey_to_address(privkey),
+        "private_key": privkey,
+        "public_key": privkey_to_pubkey(privkey),
+        "address": privkey_to_address(privkey),
     }
 
 
@@ -22,6 +22,6 @@ def privkey_to_pubkey(private_key: str) -> str:
 def privkey_to_address(private_key: str) -> str:
     pubkey = privkey_to_pubkey(private_key)
     pubkey_bytes = bytes.fromhex(pubkey)
-    s = hashlib.new('sha256', pubkey_bytes).digest()
-    r = hashlib.new('ripemd160', s).digest()
-    return bech32.bech32_encode('cosmos', bech32.convertbits(r, 8, 5))
+    s = hashlib.new("sha256", pubkey_bytes).digest()
+    r = hashlib.new("ripemd160", s).digest()
+    return bech32.bech32_encode("cosmos", bech32.convertbits(r, 8, 5))

@@ -15,6 +15,7 @@ jobs:
       script:
         - flake8 cosmospy/ tests/ setup.py
         - mypy cosmospy/ tests/ setup.py
+        - black --check .
     - stage: test
       script:
         - coverage run -m pytest
