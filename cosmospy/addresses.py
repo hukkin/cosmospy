@@ -14,14 +14,18 @@ def generate_wallet() -> Dict[str, str]:
     }
 
 
-def privkey_to_pubkey(private_key: str) -> str:
-    privkey = PrivateKey(bytes.fromhex(private_key))
-    return privkey.pubkey.serialize().hex()
+def privkey_to_pubkey(privkey: str) -> str:
+    privkey_obj = PrivateKey(bytes.fromhex(privkey))
+    return privkey_obj.pubkey.serialize().hex()
 
 
-def privkey_to_address(private_key: str) -> str:
-    pubkey = privkey_to_pubkey(private_key)
+def pubkey_to_address(pubkey: str) -> str:
     pubkey_bytes = bytes.fromhex(pubkey)
     s = hashlib.new("sha256", pubkey_bytes).digest()
     r = hashlib.new("ripemd160", s).digest()
     return bech32.bech32_encode("cosmos", bech32.convertbits(r, 8, 5))
+
+
+def privkey_to_address(privkey: str) -> str:
+    pubkey = privkey_to_pubkey(privkey)
+    return pubkey_to_address(pubkey)

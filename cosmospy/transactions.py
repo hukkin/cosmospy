@@ -7,92 +7,81 @@ from secp256k1 import PrivateKey
 from cosmospy.addresses import privkey_to_address, privkey_to_pubkey
 
 
-def sign(private_key: str, message: Dict[str, Any]) -> str:
-    message_str = json.dumps(message, separators=(",", ":"), sort_keys=True)
-    message_bytes = message_str.encode("utf-8")
+class UnsignedTransaction:
+    def __init__(
+        self,
+        privkey: str,
+        account_num: int,
+        sequence: int,
+        fee: int,
+        gas: int,
+        memo: str = "",
+        chain_id: str = "cosmoshub-2",
+        sync_mode: str = "sync",
+    ) -> None:
+        self.privkey = privkey
+        self.account_num = account_num
+        self.sequence = sequence
+        self.fee = fee
+        self.gas = gas
+        self.memo = memo
+        self.chain_id = chain_id
+        self.sync_mode = sync_mode
+        self.msgs: List[Dict] = []
 
-    privkey = PrivateKey(bytes.fromhex(private_key))
-    signature = privkey.ecdsa_sign(message_bytes)
-    signature_compact = privkey.ecdsa_serialize_compact(signature)
+    def add_atom_transfer(self, recipient: str, amount: int) -> None:
+        self.msgs.append(
+            {
+                "type": "cosmos-sdk/MsgSend",
+                "value": {
+                    "from_address": privkey_to_address(self.privkey),
+                    "to_address": recipient,
+                    "amount": [{"denom": "uatom", "amount": str(amount)}],
+                },
+            }
+        )
 
-    signature_base64_str = base64.b64encode(signature_compact).decode("utf-8")
-    return signature_base64_str
+    def _get_sign_message(self) -> Dict[str, Any]:
+        return {
+            "chain_id": self.chain_id,
+            "account_number": str(self.account_num),
+            "fee": {"gas": str(self.gas), "amount": [{"amount": str(self.fee), "denom": "uatom"}]},
+            "memo": self.memo,
+            "sequence": str(self.sequence),
+            "msgs": self.msgs,
+        }
 
+    def _sign(self) -> str:
+        message_str = json.dumps(self._get_sign_message(), separators=(",", ":"), sort_keys=True)
+        message_bytes = message_str.encode("utf-8")
 
-def _make_atom_transfer_msg(sender: str, recipient: str, amount: int) -> Dict[str, Any]:
-    return {
-        "type": "cosmos-sdk/MsgSend",
-        "value": {
-            "from_address": sender,
-            "to_address": recipient,
-            "amount": [{"denom": "uatom", "amount": str(amount)}],
-        },
-    }
+        privkey = PrivateKey(bytes.fromhex(self.privkey))
+        signature = privkey.ecdsa_sign(message_bytes)
+        signature_compact = privkey.ecdsa_serialize_compact(signature)
 
+        signature_base64_str = base64.b64encode(signature_compact).decode("utf-8")
+        return signature_base64_str
 
-def _make_sign_message(
-    msgs: List[Dict], account_num: int, sequence: int, fee: int, gas: int, memo: str, chain_id: str
-) -> Dict[str, Any]:
-    return {
-        "chain_id": chain_id,
-        "account_number": str(account_num),
-        "fee": {"gas": str(gas), "amount": [{"amount": str(fee), "denom": "uatom"}]},
-        "memo": memo,
-        "sequence": str(sequence),
-        "msgs": msgs,
-    }
-
-
-def _make_pushable_tx(
-    msgs: List[Dict],
-    signature: str,
-    public_key: str,
-    account_num: int,
-    sequence: int,
-    fee: int,
-    gas: int,
-    memo: str,
-    mode: str,
-) -> str:
-    base64_pubkey = base64.b64encode(bytes.fromhex(public_key)).decode("utf-8")
-    pushable_tx = {
-        "tx": {
-            "msg": msgs,
-            "fee": {"gas": str(gas), "amount": [{"denom": "uatom", "amount": str(fee)}]},
-            "memo": memo,
-            "signatures": [
-                {
-                    "signature": signature,
-                    "pub_key": {"type": "tendermint/PubKeySecp256k1", "value": base64_pubkey},
-                    "account_number": str(account_num),
-                    "sequence": str(sequence),
-                }
-            ],
-        },
-        "mode": mode,
-    }
-    return json.dumps(pushable_tx, separators=(",", ":"))
-
-
-def sign_atom_transfer(
-    private_key: str,
-    to: str,
-    amount: int,
-    account_num: int,
-    sequence: int,
-    fee: int,
-    gas: int = 37000,
-    memo: str = "",
-    chain_id: str = "cosmoshub-2",
-) -> str:
-    sender = privkey_to_address(private_key)
-    transfer_message = _make_atom_transfer_msg(sender, to, amount)
-    sign_message = _make_sign_message(
-        [transfer_message], account_num, sequence, fee, gas, memo, chain_id
-    )
-    sig = sign(private_key, sign_message)
-    pubkey = privkey_to_pubkey(private_key)
-    pushable_tx = _make_pushable_tx(
-        [transfer_message], sig, pubkey, account_num, sequence, fee, gas, memo, "sync"
-    )
-    return pushable_tx
+    def get_pushable_tx(self) -> str:
+        pubkey = privkey_to_pubkey(self.privkey)
+        base64_pubkey = base64.b64encode(bytes.fromhex(pubkey)).decode("utf-8")
+        pushable_tx = {
+            "tx": {
+                "msg": self.msgs,
+                "fee": {
+                    "gas": str(self.gas),
+                    "amount": [{"denom": "uatom", "amount": str(self.fee)}],
+                },
+                "memo": self.memo,
+                "signatures": [
+                    {
+                        "signature": self._sign(),
+                        "pub_key": {"type": "tendermint/PubKeySecp256k1", "value": base64_pubkey},
+                        "account_number": str(self.account_num),
+                        "sequence": str(self.sequence),
+                    }
+                ],
+            },
+            "mode": self.sync_mode,
+        }
+        return json.dumps(pushable_tx, separators=(",", ":"))
