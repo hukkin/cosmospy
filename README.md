@@ -38,5 +38,19 @@ The value assigned to `wallet` will be a dictionary just like:
  ```
 
  ### Signing transactions
- TODO: Update the README. The functionality is already in place in code.
- 
+```python
+from cosmospy.transactions import UnsignedTransaction
+tx = UnsignedTransaction(
+    privkey="26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59",
+    account_num=11335,
+    sequence=0,
+    fee=1000,
+    gas=37000,
+    memo="",
+    chain_id="cosmoshub-2",
+    sync_mode="sync",
+)
+tx.add_atom_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=387000)
+pushable_tx = tx.get_pushable_tx()
+```
+The value assigned to `pushable_tx` will be a signed transaction in the form of a JSON string. The string can be used as request body when calling the `POST /txs` endpoint of the Cosmos REST API.
