@@ -1,4 +1,5 @@
 from unittest.mock import Mock
+
 from cosmospy.transactions import UnsignedTransaction
 
 
@@ -32,7 +33,7 @@ def test_sign():
     }
     dummy_num = 1337
     tx = UnsignedTransaction(private_key, dummy_num, dummy_num, dummy_num, dummy_num)
-    tx._get_sign_message = Mock(return_value=unordered_sign_message)
+    tx._get_sign_message = Mock(return_value=unordered_sign_message)  # type: ignore
 
     expected_signature = (
         "YjJhlAf7aCnUtLyBNDp9e6LKuNgV7hJC3rmm0Wro5nBsIPVtWzjuobsp/AhR5Kht+HcRF2zBq4AfoNQMIbY6fw=="
