@@ -6,7 +6,7 @@
 # cosmospy
 
 <!--- Don't edit the version line below manually. Let bump2version do it for you. -->
-> Version 0.0.1
+> Version 1.0.0
 
 > Tools for Cosmos wallet management and offline transaction signing
 
