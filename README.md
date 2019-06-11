@@ -34,10 +34,10 @@ The value assigned to `wallet` will be a dictionary just like:
     'private_key': '6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa',
     'public_key': '03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775',
     'address': 'cosmos1jkc7hv9j92gj7r6sqq0l630lv4kqyac7t2dj2t'
- }
+}
  ```
 
- ### Signing transactions
+### Signing transactions
 ```python
 from cosmospy.transactions import UnsignedTransaction
 tx = UnsignedTransaction(
