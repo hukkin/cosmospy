@@ -24,5 +24,6 @@ setup(
     long_description_content_type="text/markdown",
     install_requires=["secp256k1==0.13.2", "bech32==1.1.0"],
     python_requires=">=3.6",
+    keywords="cosmos blockchain atom",
     classifiers=["Typing :: Typed"],
 )
