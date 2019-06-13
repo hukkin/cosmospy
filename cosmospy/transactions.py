@@ -7,7 +7,7 @@ from secp256k1 import PrivateKey
 from cosmospy.addresses import privkey_to_address, privkey_to_pubkey
 
 
-class UnsignedTransaction:
+class Transaction:
     def __init__(
         self,
         privkey: str,
