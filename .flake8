@@ -1,0 +1,8 @@
+[flake8]
+max-line-length = 99
+# These checks violate PEP8 so let's ignore them
+ignore = W503,E203
+
+# Settings for flake8-import-order extension
+application-import-names = cosmospy
+import-order-style = pep8
