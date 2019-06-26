@@ -5,7 +5,6 @@ pytest-mock
 black
 flake8
 flake8-bugbear
-flake8-mutable
 flake8-import-order
 mypy
 codecov

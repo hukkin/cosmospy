@@ -1,5 +1,6 @@
 [flake8]
 max-line-length = 99
+max-complexity = 10
 # These checks violate PEP8 so let's ignore them
 ignore = W503,E203
 
