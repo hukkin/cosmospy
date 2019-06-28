@@ -19,4 +19,5 @@ jobs:
     - stage: test
       script:
         - coverage run -m pytest
+        - coverage report --fail-under=100
         - codecov
