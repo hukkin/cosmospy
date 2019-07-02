@@ -55,21 +55,21 @@ pushable_tx = tx.get_pushable_tx()
 The value assigned to `pushable_tx` will be a signed transaction in the form of a JSON string. The string can be used as request body when calling the `POST /txs` endpoint of the Cosmos REST API.
 
 ## Contributing
-* Fork/clone the repository.
+1. Fork/clone the repository.
 
-* Install dependencies (you'll probably want to create a virtual environment, using your preferred method, first).
-```bash
-pip install -r requirements.txt
-```
+1. Install dependencies (you'll probably want to create a virtual environment, using your preferred method, first).
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-* Install pre-commit hooks
-```bash
-pre-commit install
-```
+1. Install pre-commit hooks
+    ```bash
+    pre-commit install
+    ```
 
-* After making changes and having written tests, make sure tests pass:
-```bash
-pytest
-```
+1. After making changes and having written tests, make sure tests pass:
+    ```bash
+    pytest
+    ```
 
-* Commit, push, and make a PR.
+1. Commit, push, and make a PR.

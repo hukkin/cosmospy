@@ -1,3 +1,10 @@
+# These pre-commit hooks don't ensure a passing CI run. Instead they act as
+# a quick "smoke check" running static code analysis on the files changed.
+# The hooks do NOT:
+#     - Run tests or other time-consuming tasks.
+#     - Check the whole codebase, just modified files.
+#     - Run flake8 extensions.
+#     - Allow mypy to look for missing imports (mypy runs with `ignore_missing_imports=True`).
 repos:
 -   repo: https://github.com/python/black
     rev: stable
