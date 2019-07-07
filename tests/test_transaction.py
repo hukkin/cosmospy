@@ -32,7 +32,13 @@ def test_sign():
         ],
     }
     dummy_num = 1337
-    tx = Transaction(private_key, dummy_num, dummy_num, dummy_num, dummy_num)
+    tx = Transaction(
+        privkey=private_key,
+        account_num=dummy_num,
+        sequence=dummy_num,
+        fee=dummy_num,
+        gas=dummy_num,
+    )
     tx._get_sign_message = Mock(return_value=unordered_sign_message)  # type: ignore
 
     expected_signature = (
@@ -54,7 +60,7 @@ def test_get_pushable_tx():
     gas = 37000
     amount = 388000 - fee
 
-    tx = Transaction(privkey, account_num, sequence, fee, gas)
+    tx = Transaction(privkey=privkey, account_num=account_num, sequence=sequence, fee=fee, gas=gas)
     tx.add_atom_transfer(recipient, amount)
     pushable_tx = tx.get_pushable_tx()
     assert pushable_tx == expected_pushable_tx

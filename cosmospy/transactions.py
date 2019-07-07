@@ -11,6 +11,7 @@ from cosmospy.addresses import privkey_to_address, privkey_to_pubkey
 class Transaction:
     def __init__(
         self,
+        *,
         privkey: str,
         account_num: int,
         sequence: int,
