@@ -2,9 +2,9 @@ from typing import Dict, List, Any
 import json
 import base64
 
-from typing_extensions import Literal
 from secp256k1 import PrivateKey
 
+from cosmospy.typing import SyncMode
 from cosmospy.addresses import privkey_to_address, privkey_to_pubkey
 
 
@@ -19,7 +19,7 @@ class Transaction:
         gas: int,
         memo: str = "",
         chain_id: str = "cosmoshub-2",
-        sync_mode: Literal["sync", "async", "block"] = "sync",
+        sync_mode: SyncMode = "sync",
     ) -> None:
         self.privkey = privkey
         self.account_num = account_num

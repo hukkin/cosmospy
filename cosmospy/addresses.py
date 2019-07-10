@@ -1,11 +1,12 @@
 import hashlib
-from typing import Dict
 
 from secp256k1 import PrivateKey
 import bech32
 
+from cosmospy.typing import Wallet
 
-def generate_wallet() -> Dict[str, str]:
+
+def generate_wallet() -> Wallet:
     privkey = PrivateKey().serialize()
     return {
         "private_key": privkey,
