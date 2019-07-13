@@ -6,15 +6,15 @@
 #     - Allow mypy to look for missing imports (mypy runs with `ignore_missing_imports=True`).
 repos:
 -   repo: https://github.com/python/black
-    rev: stable
+    rev: 19.3b0
     hooks:
     - id: black
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.711
+    rev: v0.720
     hooks:
     -   id: mypy
 -   repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.7
+    rev: 3.7.8
     hooks:
     -   id: flake8
         additional_dependencies:
