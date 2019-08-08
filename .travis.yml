@@ -20,7 +20,7 @@ jobs:
         - '3.6'
         - '3.8-dev'
     - name: test-and-push-coverage
-        script:
-          - coverage run -m pytest
-          - coverage report --fail-under=100
-          - codecov
+      script:
+        - coverage run -m pytest
+        - coverage report --fail-under=100
+        - codecov

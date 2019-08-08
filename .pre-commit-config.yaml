@@ -5,6 +5,10 @@
 #     - Check the whole codebase, just modified files.
 #     - Allow mypy to look for missing imports (mypy runs with `ignore_missing_imports=True`).
 repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.2.3
+    hooks:
+    - id: check-yaml
 -   repo: https://github.com/python/black
     rev: 19.3b0
     hooks:
