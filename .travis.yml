@@ -1,19 +1,18 @@
 dist: xenial
 language: python
 python:
+  - '3.6'
   - '3.7'
-jobs:
-  include:
-    - name: build
-      script:
-        - python setup.py install
-    - name: static-checks
-      script:
-        - flake8 cosmospy/ tests/ setup.py
-        - mypy cosmospy/ tests/ setup.py
-        - black --check .
-    - name: test
-      script:
-        - coverage run -m pytest
-        - coverage report --fail-under=100
-        - codecov
+  - '3.8-dev'
+script:
+  # Build
+  - python setup.py install
+  # Static checks
+  - flake8 cosmospy/ tests/ setup.py
+  - mypy cosmospy/ tests/ setup.py
+  - black --check .
+  # Tests
+  - coverage run -m pytest
+  - coverage report --fail-under=100
+  # Upload coverage (only once, with Python 3.6)
+  - if [[ $TRAVIS_PYTHON_VERSION == '3.6' ]]; then codecov; fi
