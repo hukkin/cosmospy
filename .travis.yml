@@ -1,9 +1,7 @@
 dist: xenial
 language: python
 python:
-  - '3.6'
   - '3.7'
-  - '3.8-dev'
 jobs:
   include:
     - name: build
@@ -18,4 +16,11 @@ jobs:
       script:
         - coverage run -m pytest
         - coverage report --fail-under=100
-        - codecov
+      python:
+        - '3.6'
+        - '3.8-dev'
+    - name: test-and-push-coverage
+        script:
+          - coverage run -m pytest
+          - coverage report --fail-under=100
+          - codecov
