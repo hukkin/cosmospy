@@ -1,17 +1,25 @@
 dist: xenial
 language: python
 python:
+  - '3.6'
   - '3.7'
+  - '3.8-dev'
 jobs:
   include:
     - name: build
       script:
         - python setup.py install
+      python:
+        - '3.6'
+        - '3.7'
+        - '3.8-dev'
     - name: static-checks
       script:
         - flake8 cosmospy/ tests/ setup.py
         - mypy cosmospy/ tests/ setup.py
         - black --check .
+      python:
+        - '3.7'
     - name: test
       script:
         - coverage run -m pytest
@@ -24,3 +32,5 @@ jobs:
         - coverage run -m pytest
         - coverage report --fail-under=100
         - codecov
+      python:
+        - '3.7'
