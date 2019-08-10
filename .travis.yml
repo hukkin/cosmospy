@@ -10,8 +10,8 @@ script:
   # Static checks (only in Python 3.7 job)
   - |
     if [[ $TRAVIS_PYTHON_VERSION == '3.7' ]]; then
-      flake8 cosmospy/ tests/ setup.py
-      mypy cosmospy/ tests/ setup.py
+      flake8 cosmospy/ tests/ setup.py &&
+      mypy cosmospy/ tests/ setup.py &&
       black --check .
     fi
   # Tests
