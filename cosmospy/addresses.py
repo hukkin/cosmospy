@@ -20,8 +20,7 @@ def privkey_to_pubkey(privkey: str) -> str:
     return privkey_obj.pubkey.serialize().hex()
 
 
-def pubkey_to_address(pubkey: str
-                      ) -> str:
+def pubkey_to_address(pubkey: str) -> str:
     pubkey_bytes = bytes.fromhex(pubkey)
     s = hashlib.new("sha256", pubkey_bytes).digest()
     r = hashlib.new("ripemd160", s).digest()
