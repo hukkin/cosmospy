@@ -15,7 +15,8 @@ def generate_wallet() -> Wallet:
     }
 
 
-def privkey_to_pubkey(privkey: str) -> str:
+def privkey_to_pubkey(privkey: str
+                      ) -> str:
     privkey_obj = PrivateKey(bytes.fromhex(privkey))
     return privkey_obj.pubkey.serialize().hex()
 
