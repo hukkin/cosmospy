@@ -3,7 +3,7 @@
 # The hooks do NOT:
 #     - Run tests or other time-consuming tasks.
 #     - Check the whole codebase, just modified files.
-#     - Allow mypy to look for missing imports (mypy runs with `ignore_missing_imports=True`).
+#     - Let mypy access dependencies' typehints.
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v2.3.0
@@ -18,6 +18,8 @@ repos:
   rev: v0.720
   hooks:
   - id: mypy
+    # Add args that suppress errors resulting from no access to dependencies
+    args: [--ignore-missing-imports, --no-warn-unused-ignores, --scripts-are-modules]
 - repo: https://gitlab.com/pycqa/flake8
   rev: 3.7.8
   hooks:
