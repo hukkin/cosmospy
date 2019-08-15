@@ -7,15 +7,15 @@ python:
 script:
   # Build
   - python setup.py install
-  # Static checks (only in Python 3.7 job)
+  # Static checks (only in Python 3.6 job)
   - |
-    if [[ $TRAVIS_PYTHON_VERSION == '3.7' ]]; then
+    if [[ $TRAVIS_PYTHON_VERSION == '3.6' ]]; then
       flake8 . &&
       mypy . &&
       black --check .
     fi
   # Tests
   - coverage run -m pytest
-  - coverage report --fail-under=100
+  - coverage report --fail-under=95
   # Upload coverage (only in Python 3.6 job, to not spam codecov with the same coverage report)
   - if [[ $TRAVIS_PYTHON_VERSION == '3.6' ]]; then codecov; fi
