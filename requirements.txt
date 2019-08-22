@@ -1,5 +1,5 @@
 # Tests and CI
-isort
+isort[pyproject]
 pre-commit
 pytest
 pytest-mock

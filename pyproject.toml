@@ -1,6 +1,10 @@
 [tool.isort]
 skip = ['venv']
 
+# Configure isort to work without access to site-packages
+known_first_party = ['cosmospy']
+default_section = 'THIRDPARTY'
+
 # Settings for Black compatibility
 multi_line_output = 3
 include_trailing_comma = true
