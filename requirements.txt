@@ -1,4 +1,5 @@
 # Tests and CI
+isort
 pre-commit
 pytest
 pytest-mock

@@ -1,7 +1,7 @@
 import hashlib
 
-from secp256k1 import PrivateKey
 import bech32
+from secp256k1 import PrivateKey
 
 from cosmospy.typing import Wallet
 

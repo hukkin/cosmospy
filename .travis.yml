@@ -12,6 +12,7 @@ script:
     if [[ $TRAVIS_PYTHON_VERSION == '3.6' ]]; then
       flake8 . &&
       mypy . &&
+      isort --check-only -rc . &&
       black --check .
     fi
   # Tests
