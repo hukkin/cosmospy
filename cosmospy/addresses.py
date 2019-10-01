@@ -8,11 +8,9 @@ from cosmospy.typing import Wallet
 
 def generate_wallet() -> Wallet:
     privkey = PrivateKey().serialize()
-    return {
-        "private_key": privkey,
-        "public_key": privkey_to_pubkey(privkey),
-        "address": privkey_to_address(privkey),
-    }
+    pubkey = privkey_to_pubkey(privkey)
+    address = pubkey_to_address(pubkey)
+    return {"private_key": privkey, "public_key": pubkey, "address": address}
 
 
 def privkey_to_pubkey(privkey: str) -> str:

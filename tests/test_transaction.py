@@ -51,16 +51,19 @@ def test_sign():
 
 def test_get_pushable_tx():
     expected_pushable_tx = '{"tx":{"msg":[{"type":"cosmos-sdk/MsgSend","value":{"from_address":"cosmos1lgharzgds89lpshr7q8kcmd2esnxkfpwvuz5tr","to_address":"cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf","amount":[{"denom":"uatom","amount":"387000"}]}}],"fee":{"gas":"37000","amount":[{"denom":"uatom","amount":"1000"}]},"memo":"","signatures":[{"signature":"chbQMmrg18ZQSt3q3HzW8S8pMyGs/TP/WIbbCyKFd5IiReUY/xJB2yRDEtF92yYBjxEU02z9JNE7VCQmmxWdQw==","pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A49sjCd3Eul+ZXyof7qO460UaO73otrmySHyTNSLW+Xn"},"account_number":"11335","sequence":"0"}]},"mode":"sync"}'  # noqa: E501
-    privkey = "26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59"
-    account_num = 11335
-    sequence = 0
 
-    recipient = "cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf"
+    _tx_total_cost = 388000
     fee = 1000
-    gas = 37000
-    amount = 388000 - fee
+    amount = _tx_total_cost - fee
 
-    tx = Transaction(privkey=privkey, account_num=account_num, sequence=sequence, fee=fee, gas=gas)
-    tx.add_atom_transfer(recipient, amount)
+    tx = Transaction(
+        privkey="26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59",
+        account_num=11335,
+        sequence=0,
+        fee=fee,
+        gas=37000,
+        chain_id="cosmoshub-2",
+    )
+    tx.add_atom_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=amount)
     pushable_tx = tx.get_pushable_tx()
     assert pushable_tx == expected_pushable_tx

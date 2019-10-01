@@ -18,7 +18,7 @@ class Transaction:
         fee: int,
         gas: int,
         memo: str = "",
-        chain_id: str = "cosmoshub-2",
+        chain_id: str = "cosmoshub-3",
         sync_mode: SyncMode = "sync",
     ) -> None:
         self.privkey = privkey
@@ -29,7 +29,7 @@ class Transaction:
         self.memo = memo
         self.chain_id = chain_id
         self.sync_mode = sync_mode
-        self.msgs: List[Dict] = []
+        self.msgs: List[dict] = []
 
     def add_atom_transfer(self, recipient: str, amount: int) -> None:
         self.msgs.append(
