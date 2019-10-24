@@ -2,6 +2,7 @@
 isort
 pre-commit
 pytest
+pytest-cov
 pytest-mock
 black
 flake8
