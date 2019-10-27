@@ -13,6 +13,7 @@ docformatter
 codecov
 
 # Requirements of the package
+git+https://github.com/warner/python-ecdsa
 secp256k1
 bech32
 typing-extensions

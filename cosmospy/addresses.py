@@ -1,21 +1,23 @@
 import hashlib
 
 import bech32
+from ecdsa import SigningKey, SECP256k1
 from secp256k1 import PrivateKey
 
 from cosmospy.typing import Wallet
 
 
 def generate_wallet() -> Wallet:
-    privkey = PrivateKey().serialize()
+    # privkey = PrivateKey().serialize()
+    privkey = SigningKey.generate(curve=SECP256k1).to_string().hex()
     pubkey = privkey_to_pubkey(privkey)
     address = pubkey_to_address(pubkey)
     return {"private_key": privkey, "public_key": pubkey, "address": address}
 
 
 def privkey_to_pubkey(privkey: str) -> str:
-    privkey_obj = PrivateKey(bytes.fromhex(privkey))
-    return privkey_obj.pubkey.serialize().hex()
+    privkey_obj = SigningKey.from_string(bytes.fromhex(privkey), curve=SECP256k1)
+    return privkey_obj.get_verifying_key().to_string("compressed").hex()
 
 
 def pubkey_to_address(pubkey: str) -> str:

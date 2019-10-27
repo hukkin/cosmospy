@@ -2,6 +2,8 @@ import base64
 import json
 from typing import Any, Dict, List
 
+import ecdsa
+from ecdsa import SigningKey, SECP256k1
 from secp256k1 import PrivateKey
 
 from cosmospy.addresses import privkey_to_address, privkey_to_pubkey
