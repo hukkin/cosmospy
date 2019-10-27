@@ -1,7 +1,7 @@
 import hashlib
 
 import bech32
-from ecdsa import SigningKey, SECP256k1
+from ecdsa import SECP256k1, SigningKey
 from secp256k1 import PrivateKey
 
 from cosmospy.typing import Wallet
