@@ -13,7 +13,8 @@ script:
       flake8 . &&
       mypy . &&
       isort --check-only -rc . &&
-      black --check .
+      black --check . &&
+      docformatter --recursive --check cosmospy/ tests/ setup.py
     fi
   # Tests
   - pytest --cov --cov-fail-under=95
