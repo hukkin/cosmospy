@@ -8,6 +8,7 @@ This log should always be updated when doing backwards incompatible changes, res
 - Changed
     - `transactions.Transaction` init only takes keyword arguments.
     - `transactions.Transaction` keyword argument `chain_id` default value changed from "cosmoshub-2" to "cosmoshub-3"
+    - Made all instance variables of `transactions.Transaction` private
 
 2.0.0
 -----

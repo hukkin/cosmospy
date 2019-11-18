@@ -29,48 +29,48 @@ class Transaction:
         chain_id: str = "cosmoshub-3",
         sync_mode: SyncMode = "sync",
     ) -> None:
-        self.privkey = privkey
-        self.account_num = account_num
-        self.sequence = sequence
-        self.fee = fee
-        self.gas = gas
-        self.memo = memo
-        self.chain_id = chain_id
-        self.sync_mode = sync_mode
-        self.msgs: List[dict] = []
+        self._privkey = privkey
+        self._account_num = account_num
+        self._sequence = sequence
+        self._fee = fee
+        self._gas = gas
+        self._memo = memo
+        self._chain_id = chain_id
+        self._sync_mode = sync_mode
+        self._msgs: List[dict] = []
 
     def add_atom_transfer(self, recipient: str, amount: int) -> None:
         transfer = {
             "type": "cosmos-sdk/MsgSend",
             "value": {
-                "from_address": privkey_to_address(self.privkey),
+                "from_address": privkey_to_address(self._privkey),
                 "to_address": recipient,
                 "amount": [{"denom": "uatom", "amount": str(amount)}],
             },
         }
-        self.msgs.append(transfer)
+        self._msgs.append(transfer)
 
     def get_pushable_tx(self) -> str:
-        pubkey = privkey_to_pubkey(self.privkey)
+        pubkey = privkey_to_pubkey(self._privkey)
         base64_pubkey = base64.b64encode(bytes.fromhex(pubkey)).decode("utf-8")
         pushable_tx = {
             "tx": {
-                "msg": self.msgs,
+                "msg": self._msgs,
                 "fee": {
-                    "gas": str(self.gas),
-                    "amount": [{"denom": "uatom", "amount": str(self.fee)}],
+                    "gas": str(self._gas),
+                    "amount": [{"denom": "uatom", "amount": str(self._fee)}],
                 },
-                "memo": self.memo,
+                "memo": self._memo,
                 "signatures": [
                     {
                         "signature": self._sign(),
                         "pub_key": {"type": "tendermint/PubKeySecp256k1", "value": base64_pubkey},
-                        "account_number": str(self.account_num),
-                        "sequence": str(self.sequence),
+                        "account_number": str(self._account_num),
+                        "sequence": str(self._sequence),
                     }
                 ],
             },
-            "mode": self.sync_mode,
+            "mode": self._sync_mode,
         }
         return json.dumps(pushable_tx, separators=(",", ":"))
 
@@ -78,7 +78,7 @@ class Transaction:
         message_str = json.dumps(self._get_sign_message(), separators=(",", ":"), sort_keys=True)
         message_bytes = message_str.encode("utf-8")
 
-        privkey = PrivateKey(bytes.fromhex(self.privkey))
+        privkey = PrivateKey(bytes.fromhex(self._privkey))
         signature = privkey.ecdsa_sign(message_bytes)
         signature_compact = privkey.ecdsa_serialize_compact(signature)
 
@@ -87,10 +87,13 @@ class Transaction:
 
     def _get_sign_message(self) -> Dict[str, Any]:
         return {
-            "chain_id": self.chain_id,
-            "account_number": str(self.account_num),
-            "fee": {"gas": str(self.gas), "amount": [{"amount": str(self.fee), "denom": "uatom"}]},
-            "memo": self.memo,
-            "sequence": str(self.sequence),
-            "msgs": self.msgs,
+            "chain_id": self._chain_id,
+            "account_number": str(self._account_num),
+            "fee": {
+                "gas": str(self._gas),
+                "amount": [{"amount": str(self._fee), "denom": "uatom"}],
+            },
+            "memo": self._memo,
+            "sequence": str(self._sequence),
+            "msgs": self._msgs,
         }
