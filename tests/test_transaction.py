@@ -64,6 +64,6 @@ def test_get_pushable_tx():
         gas=37000,
         chain_id="cosmoshub-2",
     )
-    tx.add_atom_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=amount)
+    tx.add_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=amount)
     pushable_tx = tx.get_pushable_tx()
     assert pushable_tx == expected_pushable_tx

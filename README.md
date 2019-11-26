@@ -49,7 +49,7 @@ tx = Transaction(
     chain_id="cosmoshub-3",
     sync_mode="sync",
 )
-tx.add_atom_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=387000)
+tx.add_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=387000)
 pushable_tx = tx.get_pushable_tx()
 ```
 The value assigned to `pushable_tx` will be a signed transaction in the form of a JSON string. The string can be used as request body when calling the `POST /txs` endpoint of the [Cosmos REST API](https://cosmos.network/rpc).

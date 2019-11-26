@@ -12,7 +12,7 @@ class Transaction:
     """A Cosmos transaction.
 
     After initialization, one or more atom transfers can be added by
-    calling the `add_atom_transfer()` method. Finally, call
+    calling the `add_transfer()` method. Finally, call
     `get_pushable_tx()` to get a signed transaction that can be pushed
     to the `POST /txs` endpoint of the Cosmos REST API.
     """
@@ -39,13 +39,13 @@ class Transaction:
         self._sync_mode = sync_mode
         self._msgs: List[dict] = []
 
-    def add_atom_transfer(self, recipient: str, amount: int) -> None:
+    def add_transfer(self, recipient: str, amount: int, denom: str = "uatom") -> None:
         transfer = {
             "type": "cosmos-sdk/MsgSend",
             "value": {
                 "from_address": privkey_to_address(self._privkey),
                 "to_address": recipient,
-                "amount": [{"denom": "uatom", "amount": str(amount)}],
+                "amount": [{"denom": denom, "amount": str(amount)}],
             },
         }
         self._msgs.append(transfer)
