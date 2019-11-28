@@ -25,6 +25,7 @@ class Transaction:
         sequence: int,
         fee: int,
         gas: int,
+        fee_denom: str = "uatom",
         memo: str = "",
         chain_id: str = "cosmoshub-3",
         sync_mode: SyncMode = "sync",
@@ -33,6 +34,7 @@ class Transaction:
         self._account_num = account_num
         self._sequence = sequence
         self._fee = fee
+        self._fee_denom = fee_denom
         self._gas = gas
         self._memo = memo
         self._chain_id = chain_id
@@ -58,7 +60,7 @@ class Transaction:
                 "msg": self._msgs,
                 "fee": {
                     "gas": str(self._gas),
-                    "amount": [{"denom": "uatom", "amount": str(self._fee)}],
+                    "amount": [{"denom": self._fee_denom, "amount": str(self._fee)}],
                 },
                 "memo": self._memo,
                 "signatures": [
@@ -91,7 +93,7 @@ class Transaction:
             "account_number": str(self._account_num),
             "fee": {
                 "gas": str(self._gas),
-                "amount": [{"amount": str(self._fee), "denom": "uatom"}],
+                "amount": [{"amount": str(self._fee), "denom": self._fee_denom}],
             },
             "memo": self._memo,
             "sequence": str(self._sequence),
