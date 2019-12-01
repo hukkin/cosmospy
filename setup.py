@@ -17,10 +17,7 @@ setup(
     author_email="hukkinj1@users.noreply.github.com",
     description="Tools for Cosmos wallet management and offline transaction signing",
     url="https://github.com/hukkinj1/cosmospy",
-    project_urls={
-        "Issues": "https://github.com/hukkinj1/cosmospy/issues",
-        "Changelog": "https://github.com/hukkinj1/cosmospy/blob/master/CHANGELOG.md",
-    },
+    project_urls={"Changelog": "https://github.com/hukkinj1/cosmospy/blob/master/CHANGELOG.md"},
     packages=["cosmospy"],
     package_data={"cosmospy": ["py.typed"]},
     zip_safe=False,  # For mypy to be able to find the installed package
