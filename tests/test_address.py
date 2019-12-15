@@ -17,7 +17,7 @@ def test_privkey_to_address():
 
 def test_generate_wallet(mocker):
     mock_urandom = mocker.patch("os.urandom")
-    mock_urandom.return_value = b"\x1e\xd2\x7f9\xa7\x0em\xfd\xa0\xb4\xaa\xc4\x0b\x83\x0e%\xbf\xe6DG\x7f:a\xe6#qa\x1ch5D\xaa"  # noqa: E501
+    mock_urandom.return_value = b"\x1e\xd2\x7f9\xa7\x0em\xfd\xa0\xb4\xaa\xc4\x0b\x83\x0e%\xbf\xe6DG\x7f:a\xe6#qa\x1ch5D\xa9"  # noqa: E501
     expected_wallet = {
         "private_key": "1ed27f39a70e6dfda0b4aac40b830e25bfe644477f3a61e62371611c683544aa",
         "public_key": "02a0ebf78f928723ee4fed610115263a33e49492502b6ead39e61481d6d5b096c6",
