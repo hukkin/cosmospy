@@ -3,12 +3,10 @@ import hashlib
 import json
 from typing import Any, Dict, List
 
-from ecdsa import SECP256k1, SigningKey
+import ecdsa
 
 from cosmospy.addresses import privkey_to_address, privkey_to_pubkey
 from cosmospy.typing import SyncMode
-
-# from secp256k1 import PrivateKey
 
 
 class Transaction:
@@ -83,18 +81,10 @@ class Transaction:
         message_str = json.dumps(self._get_sign_message(), separators=(",", ":"), sort_keys=True)
         message_bytes = message_str.encode("utf-8")
 
-        # privkey = PrivateKey(bytes.fromhex(self._privkey))
-        # signature = privkey.ecdsa_sign(message_bytes)
-        # signature_compact = privkey.ecdsa_serialize_compact(signature)
-
-        # See
-        # `ecdsa.util.sigencode_string` and `ecdsa.util.sigencode_der`
-        # def sign(self, data, entropy=None, hashfunc=None,
-        #          sigencode=sigencode_string, k=None):
-
-        privkey = SigningKey.from_string(bytes.fromhex(self._privkey), curve=SECP256k1)
-        signature_compact = privkey.sign_deterministic(message_bytes, hashfunc=hashlib.sha256)
-        # signature_compact = privkey.sign(message_bytes, hashfunc=hashlib.sha256)
+        privkey = ecdsa.SigningKey.from_string(bytes.fromhex(self._privkey), curve=ecdsa.SECP256k1)
+        signature_compact = privkey.sign_deterministic(
+            message_bytes, hashfunc=hashlib.sha256, sigencode=ecdsa.util.sigencode_string_canonize
+        )
 
         signature_base64_str = base64.b64encode(signature_compact).decode("utf-8")
         return signature_base64_str
