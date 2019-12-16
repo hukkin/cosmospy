@@ -1,7 +1,13 @@
 Changelog
 =========
 
-This log should always be updated when doing backwards incompatible changes, resulting in a major version bump. Feel free to add a log for lesser version bumps as well, but for major bumps it's a must.
+This log documents all public API breaking backwards incompatible changes.
+
+**unreleased major**
+-----
+- Changed
+    - Renamed `cosmospy.transactions` as `cosmospy.transaction`
+    - Renamed `cosmospy.addresses` as `cosmospy.wallet`
 
 3.0.0
 -----

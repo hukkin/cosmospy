@@ -5,8 +5,8 @@ from typing import Any, Dict, List
 
 import ecdsa
 
-from cosmospy.addresses import privkey_to_address, privkey_to_pubkey
 from cosmospy.typing import SyncMode
+from cosmospy.wallet import privkey_to_address, privkey_to_pubkey
 
 
 class Transaction:

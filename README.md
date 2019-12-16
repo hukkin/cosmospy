@@ -19,7 +19,7 @@ pip install cosmospy
 
 ### Generating a wallet
 ```python
-from cosmospy.addresses import generate_wallet
+from cosmospy.wallet import generate_wallet
 wallet = generate_wallet()
 ```
 The value assigned to `wallet` will be a dictionary just like:
@@ -33,7 +33,7 @@ The value assigned to `wallet` will be a dictionary just like:
 
 ### Signing transactions
 ```python
-from cosmospy.transactions import Transaction
+from cosmospy.transaction import Transaction
 tx = Transaction(
     privkey="26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59",
     account_num=11335,
