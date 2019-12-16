@@ -9,11 +9,6 @@
 
 > Tools for Cosmos wallet management and offline transaction signing
 
-## Requirements
-```bash
-apt-get install libsecp256k1-dev
-```
-
 ## Installing
 Installing from PyPI repository (https://pypi.org/project/cosmospy):
 ```bash
