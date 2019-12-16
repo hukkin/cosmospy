@@ -91,8 +91,10 @@ class Transaction:
         # `ecdsa.util.sigencode_string` and `ecdsa.util.sigencode_der`
         # def sign(self, data, entropy=None, hashfunc=None,
         #          sigencode=sigencode_string, k=None):
+
         privkey = SigningKey.from_string(bytes.fromhex(self._privkey), curve=SECP256k1)
-        signature_compact = privkey.sign(message_bytes, hashfunc=hashlib.sha256,)
+        signature_compact = privkey.sign_deterministic(message_bytes, hashfunc=hashlib.sha256)
+        # signature_compact = privkey.sign(message_bytes, hashfunc=hashlib.sha256)
 
         signature_base64_str = base64.b64encode(signature_compact).decode("utf-8")
         return signature_base64_str
