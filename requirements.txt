@@ -13,6 +13,6 @@ docformatter
 codecov
 
 # Requirements of the package
-secp256k1
+ecdsa
 bech32
 typing-extensions

@@ -24,7 +24,7 @@ setup(
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     install_requires=[
-        "secp256k1>=0.13.2,<0.14.0",
+        "ecdsa>=0.14.0,<0.15.0",
         "bech32>=1.1.0,<2.0.0",
         "typing-extensions>=3.7.4,<4.0.0; python_version<'3.8'",
     ],
