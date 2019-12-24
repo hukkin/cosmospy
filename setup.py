@@ -31,12 +31,14 @@ setup(
     python_requires=">=3.6",
     keywords="cosmos blockchain atom cryptocurrency",
     classifiers=[
-        "Typing :: Typed",
+        "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Topic :: Software Development :: Libraries :: Python Modules",
+        "Typing :: Typed",
     ],
 )
