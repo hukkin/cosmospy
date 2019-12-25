@@ -1,9 +1,10 @@
-dist: xenial
+dist: bionic
 language: python
 python:
   - '3.6'
   - '3.7'
   - '3.8'
+  - 'pypy3.6-7.2.0'
 script:
   # Build
   - python setup.py install
