@@ -24,7 +24,7 @@ setup(
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     install_requires=[
-        "ecdsa>=0.14.0,<0.15.0",
+        "ecdsa>=0.14.0,<0.16.0",
         "bech32>=1.1.0,<2.0.0",
         "typing-extensions>=3.7.4,<4.0.0; python_version<'3.8'",
     ],
@@ -38,6 +38,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Typing :: Typed",
     ],
