@@ -4,7 +4,8 @@ python:
   - '3.6'
   - '3.7'
   - '3.8'
-  - '3.9-dev'
+# Disable 3.9-dev until https://github.com/python/typed_ast/issues/129 is resolved
+#  - '3.9-dev'
 script:
   # Build
   - python setup.py install
