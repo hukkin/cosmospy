@@ -54,7 +54,7 @@ The value assigned to `pushable_tx` will be a signed transaction in the form of 
 
 1. Install dependencies (you'll probably want to create a virtual environment, using your preferred method, first).
     ```bash
-    pip install -r requirements.txt
+    pip install -e .[dev]
     ```
 
 1. Install pre-commit hooks
