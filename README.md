@@ -25,10 +25,27 @@ wallet = generate_wallet()
 The value assigned to `wallet` will be a dictionary just like:
 ```python
 {
-    'private_key': '6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa',
-    'public_key': '03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775',
-    'address': 'cosmos1jkc7hv9j92gj7r6sqq0l630lv4kqyac7t2dj2t'
+    "private_key": "6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa",
+    "public_key": "03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775",
+    "address": "cosmos1jkc7hv9j92gj7r6sqq0l630lv4kqyac7t2dj2t"
 }
+ ```
+
+### Converter functions
+#### Private key to public key
+```python
+from cosmospy.wallet import privkey_to_pubkey
+pubkey = privkey_to_pubkey("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
+ ```
+#### Public key to address
+```python
+from cosmospy.wallet import pubkey_to_address
+addr = pubkey_to_address("03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775")
+ ```
+#### Private key to address
+```python
+from cosmospy.wallet import privkey_to_address
+addr = privkey_to_address("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
  ```
 
 ### Signing transactions
@@ -39,12 +56,15 @@ tx = Transaction(
     account_num=11335,
     sequence=0,
     fee=1000,
-    gas=45000,
+    gas=70000,
     memo="",
     chain_id="cosmoshub-3",
     sync_mode="sync",
 )
 tx.add_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=387000)
+tx.add_transfer(recipient="cosmos1lzumfk6xvwf9k9rk72mqtztv867xyem393um48", amount=123)
 pushable_tx = tx.get_pushable_tx()
 ```
-The value assigned to `pushable_tx` will be a signed transaction in the form of a JSON string. The string can be used as request body when calling the `POST /txs` endpoint of the [Cosmos REST API](https://cosmos.network/rpc).
+One or more token transfers can be added to a transaction by calling the `add_transfer` method.
+
+When the transaction is fully prepared, calling `get_pushable_tx` will return a signed transaction in the form of a JSON string. This can be used as request body when calling the `POST /txs` endpoint of the [Cosmos REST API](https://cosmos.network/rpc).
