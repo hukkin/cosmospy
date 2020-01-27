@@ -1,6 +1,6 @@
 from unittest.mock import Mock
 
-from cosmospy._transaction import Transaction
+from cosmospy import Transaction
 
 
 def test_sign():
