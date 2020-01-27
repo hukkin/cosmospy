@@ -1,4 +1,4 @@
-import cosmospy.wallet as address
+import cosmospy._wallet as address
 
 test_vector = {
     "private_key": "8088c2ed2149c34f6d6533b774da4e1692eb5cb426fdbaef6898eeda489630b7",

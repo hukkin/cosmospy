@@ -5,8 +5,8 @@ from typing import Any, Dict, List
 
 import ecdsa
 
+from cosmospy._wallet import privkey_to_address, privkey_to_pubkey
 from cosmospy.typing import SyncMode
-from cosmospy.wallet import privkey_to_address, privkey_to_pubkey
 
 
 class Transaction:
@@ -53,7 +53,7 @@ class Transaction:
         }
         self._msgs.append(transfer)
 
-    def get_pushable_tx(self) -> str:
+    def get_pushable(self) -> str:
         pubkey = privkey_to_pubkey(self._privkey)
         base64_pubkey = base64.b64encode(bytes.fromhex(pubkey)).decode("utf-8")
         pushable_tx = {

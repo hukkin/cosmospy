@@ -3,11 +3,11 @@ Changelog
 
 This log documents all public API breaking backwards incompatible changes.
 
-**unreleased major**
+4.0.0
 -----
 - Changed
-    - Renamed `cosmospy.transactions` as `cosmospy.transaction`
-    - Renamed `cosmospy.addresses` as `cosmospy.wallet`
+    - `cosmospy.transactions` and `cosmospy.addresses` modules have been removed. All of their functions and classes are now importable directly from the `cosmospy` root. That is, users will have to `from cosmospy import Transaction` instead of `from cosmospy.transactions import Transaction`
+    - `get_pushable_tx` method of the `Transaction` class renamed as `get_pushable`
 
 3.0.0
 -----

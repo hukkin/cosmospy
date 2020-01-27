@@ -19,7 +19,7 @@ pip install cosmospy
 
 ### Generating a wallet
 ```python
-from cosmospy.wallet import generate_wallet
+from cosmospy import generate_wallet
 wallet = generate_wallet()
 ```
 The value assigned to `wallet` will be a dictionary just like:
@@ -34,23 +34,23 @@ The value assigned to `wallet` will be a dictionary just like:
 ### Converter functions
 #### Private key to public key
 ```python
-from cosmospy.wallet import privkey_to_pubkey
+from cosmospy import privkey_to_pubkey
 pubkey = privkey_to_pubkey("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
  ```
 #### Public key to address
 ```python
-from cosmospy.wallet import pubkey_to_address
+from cosmospy import pubkey_to_address
 addr = pubkey_to_address("03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775")
  ```
 #### Private key to address
 ```python
-from cosmospy.wallet import privkey_to_address
+from cosmospy import privkey_to_address
 addr = privkey_to_address("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
  ```
 
 ### Signing transactions
 ```python
-from cosmospy.transaction import Transaction
+from cosmospy import Transaction
 tx = Transaction(
     privkey="26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59",
     account_num=11335,
@@ -63,7 +63,7 @@ tx = Transaction(
 )
 tx.add_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=387000)
 tx.add_transfer(recipient="cosmos1lzumfk6xvwf9k9rk72mqtztv867xyem393um48", amount=123)
-pushable_tx = tx.get_pushable_tx()
+pushable_tx = tx.get_pushable()
 ```
 One or more token transfers can be added to a transaction by calling the `add_transfer` method.
 

@@ -1,6 +1,6 @@
 from unittest.mock import Mock
 
-from cosmospy.transaction import Transaction
+from cosmospy._transaction import Transaction
 
 
 def test_sign():
@@ -65,5 +65,5 @@ def test_get_pushable_tx():
         chain_id="cosmoshub-2",
     )
     tx.add_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=amount)
-    pushable_tx = tx.get_pushable_tx()
+    pushable_tx = tx.get_pushable()
     assert pushable_tx == expected_pushable_tx
