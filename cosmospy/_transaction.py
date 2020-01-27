@@ -12,10 +12,10 @@ from cosmospy.typing import SyncMode
 class Transaction:
     """A Cosmos transaction.
 
-    After initialization, one or more atom transfers can be added by
-    calling the `add_transfer()` method. Finally, call
-    `get_pushable_tx()` to get a signed transaction that can be pushed
-    to the `POST /txs` endpoint of the Cosmos REST API.
+    After initialization, one or more token transfers can be added by
+    calling the `add_transfer()` method. Finally, call `get_pushable()`
+    to get a signed transaction that can be pushed to the `POST /txs`
+    endpoint of the Cosmos REST API.
     """
 
     def __init__(

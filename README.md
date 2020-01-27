@@ -67,4 +67,4 @@ pushable_tx = tx.get_pushable()
 ```
 One or more token transfers can be added to a transaction by calling the `add_transfer` method.
 
-When the transaction is fully prepared, calling `get_pushable_tx` will return a signed transaction in the form of a JSON string. This can be used as request body when calling the `POST /txs` endpoint of the [Cosmos REST API](https://cosmos.network/rpc).
+When the transaction is fully prepared, calling `get_pushable` will return a signed transaction in the form of a JSON string. This can be used as request body when calling the `POST /txs` endpoint of the [Cosmos REST API](https://cosmos.network/rpc).
