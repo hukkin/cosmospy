@@ -6,4 +6,4 @@ from cosmospy._wallet import (  # noqa: F401
     pubkey_to_address,
 )
 
-__version__ = "3.0.2"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
+__version__ = "4.0.0"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
