@@ -5,7 +5,7 @@ from typing import Any, Dict, List
 
 import ecdsa
 
-from cosmospy._wallet import privkey_to_address, privkey_to_pubkey
+from cosmospy import privkey_to_address, privkey_to_pubkey
 from cosmospy.typing import SyncMode
 
 
