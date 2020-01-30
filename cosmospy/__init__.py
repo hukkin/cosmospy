@@ -1,9 +1,7 @@
-from cosmospy._transaction import Transaction  # noqa: F401
-from cosmospy._wallet import (  # noqa: F401
-    generate_wallet,
-    privkey_to_address,
-    privkey_to_pubkey,
-    pubkey_to_address,
-)
+from cosmospy._transaction import Transaction as Transaction  # noqa: F401
+from cosmospy._wallet import generate_wallet as generate_wallet  # noqa: F401
+from cosmospy._wallet import privkey_to_address as privkey_to_address  # noqa: F401
+from cosmospy._wallet import privkey_to_pubkey as privkey_to_pubkey  # noqa: F401
+from cosmospy._wallet import pubkey_to_address as pubkey_to_address  # noqa: F401
 
 __version__ = "4.0.0"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
