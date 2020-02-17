@@ -23,7 +23,9 @@ def pubkey_to_address(pubkey: str) -> str:
     pubkey_bytes = bytes.fromhex(pubkey)
     s = hashlib.new("sha256", pubkey_bytes).digest()
     r = hashlib.new("ripemd160", s).digest()
-    return bech32.bech32_encode("cosmos", bech32.convertbits(r, 8, 5))
+    five_bit_r = bech32.convertbits(r, 8, 5)
+    assert five_bit_r is not None, "Unsuccessful bech32.convertbits call"
+    return bech32.bech32_encode("cosmos", five_bit_r)
 
 
 def privkey_to_address(privkey: str) -> str:
