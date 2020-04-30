@@ -3,7 +3,7 @@ from os import path
 from setuptools import setup
 
 EXTRAS_REQUIRE = {
-    "tests": ["pytest", "pytest-cov", "pytest-mock"],
+    "tests": ["pytest", "pytest-randomly", "pytest-cov", "pytest-mock"],
     "lint": [
         "isort",
         "black",
