@@ -34,7 +34,7 @@ repos:
     # Allow multiple scripts (no .py postfix in name) to be checked in a single mypy invocation
     - --scripts-are-modules
 - repo: https://gitlab.com/pycqa/flake8
-  rev: 3.7.9
+  rev: 3.8.1
   hooks:
   - id: flake8
     additional_dependencies:
