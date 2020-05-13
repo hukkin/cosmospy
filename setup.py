@@ -10,6 +10,7 @@ EXTRAS_REQUIRE = {
         "flake8",
         "flake8-bugbear",
         "flake8-builtins",
+        "flake8-comprehensions",
         "mypy",
         "docformatter",
         "pre-commit",
