@@ -15,7 +15,7 @@ EXTRAS_REQUIRE = {
         "docformatter",
         "pre-commit",
     ],
-    "tools": ["codecov", "bump2version"],
+    "tools": ["bump2version"],
 }
 EXTRAS_REQUIRE["dev"] = EXTRAS_REQUIRE["tests"] + EXTRAS_REQUIRE["lint"] + EXTRAS_REQUIRE["tools"]
 
