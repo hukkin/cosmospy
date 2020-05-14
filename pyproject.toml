@@ -1,3 +1,60 @@
+[build-system]
+requires = ["poetry>=1.0.5"]
+build-backend = "poetry.masonry.api"
+
+
+[tool.poetry]
+name = "cosmospy"
+version = "4.0.0"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
+authors = ["hukkinj1 <hukkinj1@users.noreply.github.com>"]
+description = "Tools for Cosmos wallet management and offline transaction signing"
+repository = "https://github.com/hukkinj1/cosmospy"
+readme = "README.md"
+license = "MIT"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+keywords = ["cosmos", "blockchain", "atom", "cryptocurrency"]
+
+packages = [
+    {include = "cosmospy"},
+]
+include = ["cosmospy/py.typed"]
+
+[tool.poetry.urls]
+"Changelog" = "https://github.com/hukkinj1/cosmospy/blob/master/CHANGELOG.md"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+ecdsa = ">=0.14.0, <0.16.0"
+bech32 = "^1.1.0"
+typing-extensions = { version = "^3.7.4", python = "<3.8" }
+
+[tool.poetry.dev-dependencies]
+# Tests
+pytest = "*"
+pytest-randomly = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+
+# Linting
+isort = "*"
+black = { version = "*", allow-prereleases = true }
+flake8 = "*"
+flake8-bugbear = "*"
+flake8-builtins = "*"
+flake8-comprehensions = "*"
+mypy = "*"
+docformatter = "*"
+
+# Tools
+pre-commit = "*"
+bump2version = "*"
+
+
 [tool.black]
 line-length = 99
 target_version = ['py36', 'py37', 'py38']
