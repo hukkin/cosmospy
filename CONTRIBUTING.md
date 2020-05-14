@@ -30,5 +30,7 @@ Whenever you need to bump version, in the project root directory do:
 
 ```bash
 bump2version (major | minor | patch)
-git push <remote> <branch> --follow-tags 
+git push <remote> <branch> --follow-tags
+poetry build
+poetry publish
 ```

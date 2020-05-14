@@ -10,7 +10,8 @@ jobs:
   allow_failures:
     - python: 'nightly'
 install:
-  - pip install .[dev]
+  - pip install "poetry==1.0.5"
+  - poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
 script:
   # Static checks (only in Python 3.6 job)
   - |
@@ -19,7 +20,7 @@ script:
       mypy . &&
       isort --check-only -rc . &&
       black --check . &&
-      docformatter --recursive --check cosmospy/ tests/ setup.py
+      docformatter --recursive --check cosmospy/ tests/
     fi
   # Tests
   - pytest --cov --cov-fail-under=95
