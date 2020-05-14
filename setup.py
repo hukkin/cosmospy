@@ -37,7 +37,6 @@ setup(
     project_urls={"Changelog": "https://github.com/hukkinj1/cosmospy/blob/master/CHANGELOG.md"},
     packages=["cosmospy"],
     package_data={"cosmospy": ["py.typed"]},
-    zip_safe=False,  # For mypy to be able to find the installed package
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     install_requires=[
