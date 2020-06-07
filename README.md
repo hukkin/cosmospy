@@ -37,25 +37,26 @@ The value assigned to `wallet` will be a dictionary just like:
 #### Mnemonic seed to private key
 ```python
 from cosmospy import seed_to_privkey
-privkey = seed_to_privkey(
-    "teach there dream chase fatigue abandon lava super senior artefact close upgrade",
-    path="m/44'/118'/0'/0/0",
-)
+seed = "teach there dream chase fatigue abandon lava super senior artefact close upgrade"
+privkey = seed_to_privkey(seed, path="m/44'/118'/0'/0/0")
  ```
 #### Private key to public key
 ```python
 from cosmospy import privkey_to_pubkey
-pubkey = privkey_to_pubkey(bytes.fromhex("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa"))
+privkey = bytes.fromhex("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
+pubkey = privkey_to_pubkey(privkey)
  ```
 #### Public key to address
 ```python
 from cosmospy import pubkey_to_address
-addr = pubkey_to_address(bytes.fromhex("03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775"))
+pubkey = bytes.fromhex("03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775")
+addr = pubkey_to_address(pubkey)
  ```
 #### Private key to address
 ```python
 from cosmospy import privkey_to_address
-addr = privkey_to_address(bytes.fromhex("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa"))
+privkey = bytes.fromhex("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
+addr = privkey_to_address(privkey)
  ```
 
 ### Signing transactions
