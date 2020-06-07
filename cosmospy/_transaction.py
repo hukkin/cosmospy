@@ -21,7 +21,7 @@ class Transaction:
     def __init__(
         self,
         *,
-        privkey: str,
+        privkey: bytes,
         account_num: int,
         sequence: int,
         fee: int,
@@ -55,7 +55,7 @@ class Transaction:
 
     def get_pushable(self) -> str:
         pubkey = privkey_to_pubkey(self._privkey)
-        base64_pubkey = base64.b64encode(bytes.fromhex(pubkey)).decode("utf-8")
+        base64_pubkey = base64.b64encode(pubkey).decode("utf-8")
         pushable_tx = {
             "tx": {
                 "msg": self._msgs,
@@ -81,7 +81,7 @@ class Transaction:
         message_str = json.dumps(self._get_sign_message(), separators=(",", ":"), sort_keys=True)
         message_bytes = message_str.encode("utf-8")
 
-        privkey = ecdsa.SigningKey.from_string(bytes.fromhex(self._privkey), curve=ecdsa.SECP256k1)
+        privkey = ecdsa.SigningKey.from_string(self._privkey, curve=ecdsa.SECP256k1)
         signature_compact = privkey.sign_deterministic(
             message_bytes, hashfunc=hashlib.sha256, sigencode=ecdsa.util.sigencode_string_canonize
         )

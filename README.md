@@ -25,11 +25,11 @@ wallet = generate_wallet()
 The value assigned to `wallet` will be a dictionary just like:
 ```python
 {
-    "seed": "burst negative solar evoke traffic yard lizard next series foster seminar enter wrist captain bulb trap giggle country sword season shoot boy bargain deal",
+    "seed": "arch skill acquire abuse frown reject front second album pizza hill slogan guess random wonder benefit industry custom green ill moral daring glow elevator",
     "derivation_path": "m/44'/118'/0'/0/0",
-    "private_key": "bb8ac5bf9c342852fa5943d1366375c6f985d4601e596f23c5a49d095bfb2878",
-    "public_key": "03a7cc51198fc666901ec7b627926dad0c85d128ebe3251a132f009dcde1d64e03",
-    "address": "cosmos1dep39rnnwztpt63jx0htxrkt3lgku2cdr5qawx",
+    "private_key": b"\xbb\xec^\xf6\xdcg\xe6\xb5\x89\xed\x8cG\x05\x03\xdf0:\xc9\x8b \x85\x8a\x14\x12\xd7\xa6a\x01\xcd\xf8\x88\x93",
+    "public_key": b"\x03h\x1d\xae\xa7\x9eO\x8e\xc5\xff\xa3sAw\xe6\xdd\xc9\xb8b\x06\x0eo\xc5a%z\xe3\xff\x1e\xd2\x8e5\xe7",
+    "address": "cosmos1uuhna3psjqfxnw4msrfzsr0g08yuyfxeht0qfh",
 }
  ```
 
@@ -45,24 +45,24 @@ privkey = seed_to_privkey(
 #### Private key to public key
 ```python
 from cosmospy import privkey_to_pubkey
-pubkey = privkey_to_pubkey("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
+pubkey = privkey_to_pubkey(bytes.fromhex("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa"))
  ```
 #### Public key to address
 ```python
 from cosmospy import pubkey_to_address
-addr = pubkey_to_address("03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775")
+addr = pubkey_to_address(bytes.fromhex("03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775"))
  ```
 #### Private key to address
 ```python
 from cosmospy import privkey_to_address
-addr = privkey_to_address("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
+addr = privkey_to_address(bytes.fromhex("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa"))
  ```
 
 ### Signing transactions
 ```python
 from cosmospy import Transaction
 tx = Transaction(
-    privkey="26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59",
+    privkey=bytes.fromhex("26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59"),
     account_num=11335,
     sequence=0,
     fee=1000,

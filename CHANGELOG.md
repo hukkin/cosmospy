@@ -9,6 +9,7 @@ This log documents all public API breaking backwards incompatible changes.
     - `cosmospy.seed_to_privkey` function
 - Changed
     - `cosmospy.typing.Wallet` now includes fields "seed" and "derivation_path"
+    - Made private keys and public keys in all public interfaces type `bytes` instead of hex formatted `str`
 
 4.0.0
 -----

@@ -30,7 +30,7 @@ def generate_wallet() -> Wallet:
     }
 
 
-def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> str:
+def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> bytes:
     """Get a private key from a mnemonic seed and a derivation path.
 
     Assumes a BIP39 mnemonic seed with no passphrase. Raises
@@ -50,24 +50,23 @@ def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> str:
     # Validate the derived private key. Can raise ecdsa.MalformedPointError here.
     ecdsa.SigningKey.from_string(derived_privkey, curve=ecdsa.SECP256k1)
 
-    return derived_privkey.hex()
+    return derived_privkey
 
 
-def privkey_to_pubkey(privkey: str) -> str:
-    privkey_obj = ecdsa.SigningKey.from_string(bytes.fromhex(privkey), curve=ecdsa.SECP256k1)
+def privkey_to_pubkey(privkey: bytes) -> bytes:
+    privkey_obj = ecdsa.SigningKey.from_string(privkey, curve=ecdsa.SECP256k1)
     pubkey_obj = privkey_obj.get_verifying_key()
-    return pubkey_obj.to_string("compressed").hex()
+    return pubkey_obj.to_string("compressed")
 
 
-def pubkey_to_address(pubkey: str) -> str:
-    pubkey_bytes = bytes.fromhex(pubkey)
-    s = hashlib.new("sha256", pubkey_bytes).digest()
+def pubkey_to_address(pubkey: bytes) -> str:
+    s = hashlib.new("sha256", pubkey).digest()
     r = hashlib.new("ripemd160", s).digest()
     five_bit_r = bech32.convertbits(r, 8, 5)
     assert five_bit_r is not None, "Unsuccessful bech32.convertbits call"
     return bech32.bech32_encode("cosmos", five_bit_r)
 
 
-def privkey_to_address(privkey: str) -> str:
+def privkey_to_address(privkey: bytes) -> str:
     pubkey = privkey_to_pubkey(privkey)
     return pubkey_to_address(pubkey)

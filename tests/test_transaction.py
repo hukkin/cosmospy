@@ -4,7 +4,7 @@ from cosmospy import Transaction
 
 
 def test_sign():
-    private_key = "2afc5a66b30e7521d553ec8e6f7244f906df97477248c30c103d7b3f2c671fef"
+    private_key = bytes.fromhex("2afc5a66b30e7521d553ec8e6f7244f906df97477248c30c103d7b3f2c671fef")
     unordered_sign_message = {
         "chain_id": "tendermint_test",
         "account_number": "1",
@@ -57,7 +57,7 @@ def test_get_pushable_tx():
     amount = _tx_total_cost - fee
 
     tx = Transaction(
-        privkey="26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59",
+        privkey=bytes.fromhex("26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59"),
         account_num=11335,
         sequence=0,
         fee=fee,

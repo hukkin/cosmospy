@@ -14,6 +14,6 @@ SyncMode = Literal["sync", "async", "block"]
 class Wallet(TypedDict):
     seed: str
     derivation_path: str
-    private_key: str
-    public_key: str
+    private_key: bytes
+    public_key: bytes
     address: str
