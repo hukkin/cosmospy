@@ -2,7 +2,7 @@ import hashlib
 import hmac
 
 import bech32
-from bip32 import BIP32
+from bip32 import BIP32, BIP32DerivationError
 import ecdsa
 import mnemonic
 
@@ -17,7 +17,7 @@ def generate_wallet() -> Wallet:
         try:
             privkey = seed_to_privkey(phrase)
             break
-        except ecdsa.MalformedPointError:
+        except BIP32DerivationError:
             pass
     pubkey = privkey_to_pubkey(privkey)
     address = pubkey_to_address(pubkey)
@@ -44,11 +44,8 @@ def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> bytes:
     master_key = seed_hmac[:32]
     chain_code = seed_hmac[32:]
 
-    # Derive a private key from the given path
+    # Derive a private key from the given path. Can raise bip32.BIP32DerivationError here.
     derived_privkey = BIP32(chain_code, privkey=master_key).get_privkey_from_path(path)
-
-    # Validate the derived private key. Can raise ecdsa.MalformedPointError here.
-    ecdsa.SigningKey.from_string(derived_privkey, curve=ecdsa.SECP256k1)
 
     return derived_privkey
 
