@@ -34,7 +34,8 @@ def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> bytes:
     """Get a private key from a mnemonic seed and a derivation path.
 
     Assumes a BIP39 mnemonic seed with no passphrase. Raises
-    `ecdsa.MalformedPointError` if the resulting private key is invalid.
+    `bip32.BIP32DerivationError` if the resulting private key is
+    invalid.
     """
     seed_bytes = mnemonic.Mnemonic.to_seed(seed, passphrase="")
 
