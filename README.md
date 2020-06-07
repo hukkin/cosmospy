@@ -25,13 +25,23 @@ wallet = generate_wallet()
 The value assigned to `wallet` will be a dictionary just like:
 ```python
 {
-    "private_key": "6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa",
-    "public_key": "03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775",
-    "address": "cosmos1jkc7hv9j92gj7r6sqq0l630lv4kqyac7t2dj2t"
+    "seed": "burst negative solar evoke traffic yard lizard next series foster seminar enter wrist captain bulb trap giggle country sword season shoot boy bargain deal",
+    "derivation_path": "m/44'/118'/0'/0/0",
+    "private_key": "bb8ac5bf9c342852fa5943d1366375c6f985d4601e596f23c5a49d095bfb2878",
+    "public_key": "03a7cc51198fc666901ec7b627926dad0c85d128ebe3251a132f009dcde1d64e03",
+    "address": "cosmos1dep39rnnwztpt63jx0htxrkt3lgku2cdr5qawx",
 }
  ```
 
 ### Converter functions
+#### Mnemonic seed to private key
+```python
+from cosmospy import seed_to_privkey
+privkey = seed_to_privkey(
+    "teach there dream chase fatigue abandon lava super senior artefact close upgrade",
+    path="m/44'/118'/0'/0/0",
+)
+ ```
 #### Private key to public key
 ```python
 from cosmospy import privkey_to_pubkey

@@ -3,6 +3,13 @@ Changelog
 
 This log documents all public API breaking backwards incompatible changes.
 
+*unreleased major*
+-----
+- Added
+    - `cosmospy.seed_to_privkey` function
+- Changed
+    - `cosmospy.typing.Wallet` now includes fields "seed" and "derivation_path"
+
 4.0.0
 -----
 - Changed
