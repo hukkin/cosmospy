@@ -3,7 +3,7 @@ Changelog
 
 This log documents all public API breaking backwards incompatible changes.
 
-*unreleased major*
+5.0.0
 -----
 - Added
     - `cosmospy.seed_to_privkey` function
