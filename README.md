@@ -25,7 +25,7 @@ wallet = generate_wallet()
 The value assigned to `wallet` will be a dictionary just like:
 ```python
 {
-    "seed": "burst negative solar evoke traffic yard lizard next series foster seminar enter wrist captain bulb trap giggle country sword season shoot boy bargain deal",  # noqa: E501
+    "seed": "burst negative solar evoke traffic yard lizard next series foster seminar enter wrist captain bulb trap giggle country sword season shoot boy bargain deal",
     "derivation_path": "m/44'/118'/0'/0/0",
     "private_key": "bb8ac5bf9c342852fa5943d1366375c6f985d4601e596f23c5a49d095bfb2878",
     "public_key": "03a7cc51198fc666901ec7b627926dad0c85d128ebe3251a132f009dcde1d64e03",
