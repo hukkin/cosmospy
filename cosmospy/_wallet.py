@@ -2,7 +2,7 @@ import hashlib
 
 import bech32
 import ecdsa
-from hdwallets import BIP32, BIP32DerivationError
+import hdwallets
 import mnemonic
 
 from cosmospy.typing import Wallet
@@ -16,7 +16,7 @@ def generate_wallet() -> Wallet:
         try:
             privkey = seed_to_privkey(phrase)
             break
-        except BIP32DerivationError:
+        except hdwallets.BIP32DerivationError:
             pass
     pubkey = privkey_to_pubkey(privkey)
     address = pubkey_to_address(pubkey)
@@ -37,7 +37,7 @@ def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> bytes:
     invalid.
     """
     seed_bytes = mnemonic.Mnemonic.to_seed(seed, passphrase="")
-    hd_wallet = BIP32.from_seed(seed_bytes)
+    hd_wallet = hdwallets.BIP32.from_seed(seed_bytes)
     # This can raise a `hdwallets.BIP32DerivationError`
     derived_privkey = hd_wallet.get_privkey_from_path(path)
 
