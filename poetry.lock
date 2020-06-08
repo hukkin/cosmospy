@@ -191,7 +191,7 @@ description = "Python implementation of the BIP32 key derivation scheme"
 name = "hdwallets"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "0.0.8"
+version = "0.0.9"
 
 [package.dependencies]
 ecdsa = ">=0.14.0,<0.16.0"
@@ -550,7 +550,7 @@ description = "Measures the displayed width of unicode strings in a terminal"
 name = "wcwidth"
 optional = false
 python-versions = "*"
-version = "0.2.3"
+version = "0.2.4"
 
 [[package]]
 category = "dev"
@@ -663,8 +663,8 @@ flake8-comprehensions = [
     {file = "flake8_comprehensions-3.2.3-py3-none-any.whl", hash = "sha256:44eaae9894aa15f86e0c86df1e218e7917494fab6f96d28f96a029c460f17d92"},
 ]
 hdwallets = [
-    {file = "hdwallets-0.0.8-py3-none-any.whl", hash = "sha256:2d39d55822bf7e9cab1aace9ded94079a0f200447faa8709f411a53f2e3af7ac"},
-    {file = "hdwallets-0.0.8.tar.gz", hash = "sha256:71e9c7617a1de14d4cf3e989fb0475d4211bf2f41dab5e6600fc38d343163d08"},
+    {file = "hdwallets-0.0.9-py3-none-any.whl", hash = "sha256:2e9df8297058d839b92051f1b9afee18c005a22bb36f9a3b3c1c984e437d6dbf"},
+    {file = "hdwallets-0.0.9.tar.gz", hash = "sha256:1a06c10da657addec95ea11c1cb27f9c27ca7f79d6929b3c9fad77bacae09a58"},
 ]
 identify = [
     {file = "identify-1.4.19-py2.py3-none-any.whl", hash = "sha256:781fd3401f5d2b17b22a8b18b493a48d5d948e3330634e82742e23f9c20234ef"},
@@ -845,8 +845,8 @@ virtualenv = [
     {file = "virtualenv-16.7.10.tar.gz", hash = "sha256:e88fdcb08b0ecb11da97868f463dd06275923f50d87f4b9c8b2fc0994eec40f4"},
 ]
 wcwidth = [
-    {file = "wcwidth-0.2.3-py2.py3-none-any.whl", hash = "sha256:980fbf4f3c196c0f329cdcd1e84c554d6a211f18e252e525a0cf4223154a41d6"},
-    {file = "wcwidth-0.2.3.tar.gz", hash = "sha256:edbc2b718b4db6cdf393eefe3a420183947d6aa312505ce6754516f458ff8830"},
+    {file = "wcwidth-0.2.4-py2.py3-none-any.whl", hash = "sha256:79375666b9954d4a1a10739315816324c3e73110af9d0e102d906fdb0aec009f"},
+    {file = "wcwidth-0.2.4.tar.gz", hash = "sha256:8c6b5b6ee1360b842645f336d9e5d68c55817c26d3050f46b235ef2bc650e48f"},
 ]
 zipp = [
     {file = "zipp-3.1.0-py3-none-any.whl", hash = "sha256:aa36550ff0c0b7ef7fa639055d797116ee891440eac1a56f378e2d3179e0320b"},
