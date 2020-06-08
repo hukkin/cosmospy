@@ -2,8 +2,8 @@ import hashlib
 import hmac
 
 import bech32
-from bip32 import BIP32, BIP32DerivationError
 import ecdsa
+from hdwallets import BIP32, BIP32DerivationError
 import mnemonic
 
 from cosmospy.typing import Wallet
@@ -34,7 +34,7 @@ def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> bytes:
     """Get a private key from a mnemonic seed and a derivation path.
 
     Assumes a BIP39 mnemonic seed with no passphrase. Raises
-    `bip32.BIP32DerivationError` if the resulting private key is
+    `hdwallets.BIP32DerivationError` if the resulting private key is
     invalid.
     """
     seed_bytes = mnemonic.Mnemonic.to_seed(seed, passphrase="")
@@ -45,7 +45,7 @@ def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> bytes:
     master_key = seed_hmac[:32]
     chain_code = seed_hmac[32:]
 
-    # Derive a private key from the given path. Can raise bip32.BIP32DerivationError here.
+    # Derive a private key from the given path. Can raise hdwallets.BIP32DerivationError here.
     derived_privkey = BIP32(chain_code, privkey=master_key).get_privkey_from_path(path)
 
     return derived_privkey
