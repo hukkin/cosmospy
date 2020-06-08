@@ -1,5 +1,4 @@
 import hashlib
-import hmac
 
 import bech32
 import ecdsa
@@ -38,15 +37,9 @@ def seed_to_privkey(seed: str, path: str = DEFAULT_DERIVATION_PATH) -> bytes:
     invalid.
     """
     seed_bytes = mnemonic.Mnemonic.to_seed(seed, passphrase="")
-
-    # Generate wallet master key as per BIP32
-    bip32_magic_string = b"Bitcoin seed"
-    seed_hmac = hmac.new(bip32_magic_string, seed_bytes, digestmod=hashlib.sha512).digest()
-    master_key = seed_hmac[:32]
-    chain_code = seed_hmac[32:]
-
-    # Derive a private key from the given path. Can raise hdwallets.BIP32DerivationError here.
-    derived_privkey = BIP32(chain_code, privkey=master_key).get_privkey_from_path(path)
+    hd_wallet = BIP32.from_seed(seed_bytes)
+    # This can raise a `hdwallets.BIP32DerivationError`
+    derived_privkey = hd_wallet.get_privkey_from_path(path)
 
     return derived_privkey
 
