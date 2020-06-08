@@ -5,7 +5,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = "cosmospy"
-version = "5.0.0"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
+version = "5.0.1"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
 authors = ["hukkinj1 <hukkinj1@users.noreply.github.com>"]
 description = "Tools for Cosmos wallet management and offline transaction signing"
 repository = "https://github.com/hukkinj1/cosmospy"
