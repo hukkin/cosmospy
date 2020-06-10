@@ -1,5 +1,5 @@
 [build-system]
-requires = ["poetry>=1.0.8"]
+requires = ["poetry>=1.0.9"]
 build-backend = "poetry.masonry.api"
 
 
@@ -32,7 +32,7 @@ python = "^3.6"
 ecdsa = ">=0.14.0, <0.16.0"
 bech32 = "^1.1.0"
 mnemonic = ">=0.19, <0.20"
-hdwallets = ">=0.0.8, <0.1.0"
+hdwallets = "^0.1.0"
 typing-extensions = { version = "^3.7.4", python = "<3.8" }
 
 [tool.poetry.dev-dependencies]
