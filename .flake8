@@ -3,4 +3,4 @@ max-line-length = 99
 max-complexity = 10
 # These checks violate PEP8 so let's ignore them
 extend-ignore = E203
-exclude = */site-packages/*
+extend-exclude = */site-packages/*
