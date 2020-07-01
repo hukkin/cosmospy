@@ -7,4 +7,4 @@ from cosmospy._wallet import privkey_to_pubkey as privkey_to_pubkey  # noqa: F40
 from cosmospy._wallet import pubkey_to_address as pubkey_to_address  # noqa: F401
 from cosmospy._wallet import seed_to_privkey as seed_to_privkey  # noqa: F401
 
-__version__ = "5.0.1"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
+__version__ = "5.0.2"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
