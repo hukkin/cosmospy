@@ -24,7 +24,7 @@ repos:
   hooks:
   - id: black
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: b561d7d305e9a99f91ccbab2ef4b3554cd6760b3  # frozen: v0.781
+  rev: d6e31aeb109d8ff85282c3fd632c89f8ea7b0dee  # frozen: v0.782
   hooks:
   - id: mypy
     args:
