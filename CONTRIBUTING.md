@@ -3,7 +3,8 @@
 
 1. Install dependencies (you'll probably want to create a virtual environment, using your preferred method, first).
     ```bash
-    pip install -e .[dev]
+    pip install poetry
+    poetry install
     ```
 
 1. Install pre-commit hooks
