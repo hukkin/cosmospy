@@ -36,9 +36,12 @@ The value assigned to `wallet` will be a dictionary just like:
 ### Converter functions
 #### Mnemonic seed to private key
 ```python
-from cosmospy import seed_to_privkey
+from cosmospy import BIP32DerivationError, seed_to_privkey
 seed = "teach there dream chase fatigue abandon lava super senior artefact close upgrade"
-privkey = seed_to_privkey(seed, path="m/44'/118'/0'/0/0")
+try:
+    privkey = seed_to_privkey(seed, path="m/44'/118'/0'/0/0")
+except BIP32DerivationError:
+    print("No valid private key in this derivation path!")
  ```
 #### Private key to public key
 ```python
