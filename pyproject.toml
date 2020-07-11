@@ -37,7 +37,7 @@ typing-extensions = { version = "^3.7.4", python = "<3.8" }
 
 [tool.poetry.dev-dependencies]
 # Tests
-pytest = "*"
+pytest = ">=6.0.0rc1"
 pytest-randomly = "*"
 pytest-cov = "*"
 pytest-mock = "*"
@@ -95,3 +95,8 @@ known_first_party = ["cosmospy", "tests"]
 # Settings for Black compatibility
 profile = "black"
 line_length = 99
+
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers"
+xfail_strict = true
