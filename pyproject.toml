@@ -91,7 +91,6 @@ no_lines_before = ["LOCALFOLDER"]
 
 # Configure isort to work without access to site-packages
 known_first_party = ["cosmospy", "tests"]
-default_section = "THIRDPARTY"
 
 # Settings for Black compatibility
 profile = "black"
