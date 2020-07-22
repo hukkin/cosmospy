@@ -1,5 +1,5 @@
 [build-system]
-requires = ["poetry>=1.0.9"]
+requires = ["poetry>=1.0.10"]
 build-backend = "poetry.masonry.api"
 
 
@@ -51,6 +51,7 @@ flake8-builtins = "*"
 flake8-comprehensions = "*"
 mypy = "*"
 docformatter = "*"
+mdformat = "*"
 
 # Tools
 pre-commit = "*"
