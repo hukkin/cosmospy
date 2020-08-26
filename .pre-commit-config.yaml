@@ -6,21 +6,21 @@
 #     - Let mypy access dependencies' typehints.
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: ebc15addedad713c86ef18ae9632c88e187dd0af  # frozen: v3.1.0
+  rev: e1668fe86af3810fbca72b8653fe478e66a0afdc  # frozen: v3.2.0
   hooks:
   - id: check-yaml
   - id: check-toml
 - repo: https://github.com/pre-commit/pygrep-hooks
-  rev: 0d7d077d6ed5624854f93ac601739c1804ebeb98  # frozen: v1.5.1
+  rev: eae6397e4c259ed3d057511f6dd5330b92867e62  # frozen: v1.6.0
   hooks:
   - id: python-use-type-annotations
   - id: python-check-blanket-noqa
 - repo: https://github.com/timothycrosley/isort
-  rev: 04dda885af509c520faeb4a691a22727c5ae2178  # frozen: 5.1.4
+  rev: 377d260ffa6f746693f97b46d95025afc4bd8275  # frozen: 5.4.2
   hooks:
   - id: isort
 - repo: https://github.com/psf/black
-  rev: 6bedb5c58a7d8c25aa9509f8217bc24e9797e90d  # frozen: 19.10b0
+  rev: e66be67b9b6811913470f70c28b4d50f94d05b22  # frozen: 20.8b1
   hooks:
   - id: black
 - repo: https://github.com/pre-commit/mirrors-mypy
@@ -46,6 +46,6 @@ repos:
   hooks:
   - id: docformatter
 - repo: https://github.com/hukkinj1/mdformat
-  rev: 89ec56e2d41ee09370fe317d968ed9fb9440e0e5  # frozen: 0.0.6
+  rev: 3dfb8851625a49c9636db50b425dd2f94354834d  # frozen: 0.1.1
   hooks:
   - id: mdformat
