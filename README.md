@@ -25,6 +25,7 @@ pip install cosmospy
 
 ~~~python
 from cosmospy import generate_wallet
+
 wallet = generate_wallet()
 ~~~
 
@@ -46,7 +47,10 @@ The value assigned to `wallet` will be a dictionary just like:
 
 ~~~python
 from cosmospy import BIP32DerivationError, seed_to_privkey
-seed = "teach there dream chase fatigue abandon lava super senior artefact close upgrade"
+
+seed = (
+    "teach there dream chase fatigue abandon lava super senior artefact close upgrade"
+)
 try:
     privkey = seed_to_privkey(seed, path="m/44'/118'/0'/0/0")
 except BIP32DerivationError:
@@ -57,7 +61,10 @@ except BIP32DerivationError:
 
 ~~~python
 from cosmospy import privkey_to_pubkey
-privkey = bytes.fromhex("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
+
+privkey = bytes.fromhex(
+    "6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa"
+)
 pubkey = privkey_to_pubkey(privkey)
 ~~~
 
@@ -65,7 +72,10 @@ pubkey = privkey_to_pubkey(privkey)
 
 ~~~python
 from cosmospy import pubkey_to_address
-pubkey = bytes.fromhex("03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775")
+
+pubkey = bytes.fromhex(
+    "03e8005aad74da5a053602f86e3151d4f3214937863a11299c960c28d3609c4775"
+)
 addr = pubkey_to_address(pubkey)
 ~~~
 
@@ -73,7 +83,10 @@ addr = pubkey_to_address(pubkey)
 
 ~~~python
 from cosmospy import privkey_to_address
-privkey = bytes.fromhex("6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa")
+
+privkey = bytes.fromhex(
+    "6dcd05d7ac71e09d3cf7da666709ebd59362486ff9e99db0e8bc663570515afa"
+)
 addr = privkey_to_address(privkey)
 ~~~
 
@@ -81,8 +94,11 @@ addr = privkey_to_address(privkey)
 
 ~~~python
 from cosmospy import Transaction
+
 tx = Transaction(
-    privkey=bytes.fromhex("26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59"),
+    privkey=bytes.fromhex(
+        "26d167d549a4b2b66f766b0d3f2bdbe1cd92708818c338ff453abde316a2bd59"
+    ),
     account_num=11335,
     sequence=0,
     fee=1000,
@@ -91,7 +107,9 @@ tx = Transaction(
     chain_id="cosmoshub-3",
     sync_mode="sync",
 )
-tx.add_transfer(recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=387000)
+tx.add_transfer(
+    recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=387000
+)
 tx.add_transfer(recipient="cosmos1lzumfk6xvwf9k9rk72mqtztv867xyem393um48", amount=123)
 pushable_tx = tx.get_pushable()
 ~~~

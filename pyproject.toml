@@ -52,6 +52,7 @@ flake8-comprehensions = "*"
 mypy = "*"
 docformatter = "*"
 mdformat = "*"
+mdformat-black = "*"
 
 # Tools
 pre-commit = "*"
