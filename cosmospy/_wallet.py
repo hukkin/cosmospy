@@ -9,21 +9,24 @@ from cosmospy import BIP32DerivationError
 from cosmospy.typing import Wallet
 
 DEFAULT_DERIVATION_PATH = "m/44'/118'/0'/0/0"
+DEFAULT_BECH32_HRP = "cosmos"
 
 
-def generate_wallet() -> Wallet:
+def generate_wallet(
+    *, path: str = DEFAULT_DERIVATION_PATH, hrp: str = DEFAULT_BECH32_HRP
+) -> Wallet:
     while True:
         phrase = mnemonic.Mnemonic(language="english").generate(strength=256)
         try:
-            privkey = seed_to_privkey(phrase)
+            privkey = seed_to_privkey(phrase, path=path)
             break
         except BIP32DerivationError:
             pass
     pubkey = privkey_to_pubkey(privkey)
-    address = pubkey_to_address(pubkey)
+    address = pubkey_to_address(pubkey, hrp=hrp)
     return {
         "seed": phrase,
-        "derivation_path": DEFAULT_DERIVATION_PATH,
+        "derivation_path": path,
         "private_key": privkey,
         "public_key": pubkey,
         "address": address,
@@ -52,14 +55,14 @@ def privkey_to_pubkey(privkey: bytes) -> bytes:
     return pubkey_obj.to_string("compressed")
 
 
-def pubkey_to_address(pubkey: bytes) -> str:
+def pubkey_to_address(pubkey: bytes, *, hrp: str = DEFAULT_BECH32_HRP) -> str:
     s = hashlib.new("sha256", pubkey).digest()
     r = hashlib.new("ripemd160", s).digest()
     five_bit_r = bech32.convertbits(r, 8, 5)
     assert five_bit_r is not None, "Unsuccessful bech32.convertbits call"
-    return bech32.bech32_encode("cosmos", five_bit_r)
+    return bech32.bech32_encode(hrp, five_bit_r)
 
 
-def privkey_to_address(privkey: bytes) -> str:
+def privkey_to_address(privkey: bytes, *, hrp: str = DEFAULT_BECH32_HRP) -> str:
     pubkey = privkey_to_pubkey(privkey)
-    return pubkey_to_address(pubkey)
+    return pubkey_to_address(pubkey, hrp=hrp)
