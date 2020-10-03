@@ -53,6 +53,7 @@ mypy = "*"
 docformatter = "*"
 mdformat = "*"
 mdformat-black = "*"
+mdformat-toc = "*"
 
 # Tools
 pre-commit = "*"
