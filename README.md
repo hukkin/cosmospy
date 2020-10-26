@@ -1,7 +1,7 @@
-[![Build Status](<https://travis-ci.com/hukkinj1/cosmospy.svg?branch=master>)](<https://travis-ci.com/hukkinj1/cosmospy>)
-[![codecov.io](<https://codecov.io/gh/hukkinj1/cosmospy/branch/master/graph/badge.svg>)](<https://codecov.io/gh/hukkinj1/cosmospy>)
-[![PyPI version](<https://img.shields.io/pypi/v/cosmospy>)](<https://pypi.org/project/cosmospy>)
-[![Code style: black](<https://img.shields.io/badge/code%20style-black-000000.svg>)](<https://github.com/psf/black>)
+[![Build Status](https://travis-ci.com/hukkinj1/cosmospy.svg?branch=master)](https://travis-ci.com/hukkinj1/cosmospy)
+[![codecov.io](https://codecov.io/gh/hukkinj1/cosmospy/branch/master/graph/badge.svg)](https://codecov.io/gh/hukkinj1/cosmospy)
+[![PyPI version](https://img.shields.io/pypi/v/cosmospy)](https://pypi.org/project/cosmospy)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 # cosmospy
 
@@ -11,9 +11,9 @@
 
 > Tools for Cosmos wallet management and offline transaction signing
 
-**Table of Contents**  *generated with [mdformat-toc](<https://github.com/hukkinj1/mdformat-toc>)*
+**Table of Contents**  *generated with [mdformat-toc](https://github.com/hukkinj1/mdformat-toc)*
 
-<!-- mdformat-toc start --maxlevel=6 --minlevel=2 -->
+<!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=2 -->
 
 - [Installing](<#installing>)
 - [Usage](<#usage>)
@@ -27,7 +27,7 @@
 
 <!-- mdformat-toc end -->
 
-## Installing
+## Installing<a name="installing"></a>
 
 Installing from PyPI repository (https://pypi.org/project/cosmospy):
 
@@ -35,9 +35,9 @@ Installing from PyPI repository (https://pypi.org/project/cosmospy):
 pip install cosmospy
 ```
 
-## Usage
+## Usage<a name="usage"></a>
 
-### Generating a wallet
+### Generating a wallet<a name="generating-a-wallet"></a>
 
 ```python
 from cosmospy import generate_wallet
@@ -57,9 +57,9 @@ The value assigned to `wallet` will be a dictionary just like:
 }
 ```
 
-### Converter functions
+### Converter functions<a name="converter-functions"></a>
 
-#### Mnemonic seed to private key
+#### Mnemonic seed to private key<a name="mnemonic-seed-to-private-key"></a>
 
 ```python
 from cosmospy import BIP32DerivationError, seed_to_privkey
@@ -73,7 +73,7 @@ except BIP32DerivationError:
     print("No valid private key in this derivation path!")
 ```
 
-#### Private key to public key
+#### Private key to public key<a name="private-key-to-public-key"></a>
 
 ```python
 from cosmospy import privkey_to_pubkey
@@ -84,7 +84,7 @@ privkey = bytes.fromhex(
 pubkey = privkey_to_pubkey(privkey)
 ```
 
-#### Public key to address
+#### Public key to address<a name="public-key-to-address"></a>
 
 ```python
 from cosmospy import pubkey_to_address
@@ -95,7 +95,7 @@ pubkey = bytes.fromhex(
 addr = pubkey_to_address(pubkey)
 ```
 
-#### Private key to address
+#### Private key to address<a name="private-key-to-address"></a>
 
 ```python
 from cosmospy import privkey_to_address
@@ -106,7 +106,7 @@ privkey = bytes.fromhex(
 addr = privkey_to_address(privkey)
 ```
 
-### Signing transactions
+### Signing transactions<a name="signing-transactions"></a>
 
 ```python
 from cosmospy import Transaction
@@ -133,4 +133,4 @@ pushable_tx = tx.get_pushable()
 One or more token transfers can be added to a transaction by calling the `add_transfer` method.
 
 When the transaction is fully prepared, calling `get_pushable` will return a signed transaction in the form of a JSON string.
-This can be used as request body when calling the `POST /txs` endpoint of the [Cosmos REST API](<https://cosmos.network/rpc>).
+This can be used as request body when calling the `POST /txs` endpoint of the [Cosmos REST API](https://cosmos.network/rpc).

@@ -1,12 +1,6 @@
-# These pre-commit hooks don't ensure a passing CI run. Instead they act as
-# a quick "smoke check" running static code analysis on the files changed.
-# The hooks do NOT:
-#     - Run tests or other time-consuming tasks.
-#     - Check the whole codebase, just modified files.
-#     - Let mypy access dependencies' typehints.
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: e1668fe86af3810fbca72b8653fe478e66a0afdc  # frozen: v3.2.0
+  rev: 9136088a246768144165fcc3ecc3d31bb686920a  # frozen: v3.3.0
   hooks:
   - id: check-yaml
   - id: check-toml
@@ -16,7 +10,7 @@ repos:
   - id: python-use-type-annotations
   - id: python-check-blanket-noqa
 - repo: https://github.com/timothycrosley/isort
-  rev: 2e02c195afdb499be9068ca0d08c9d7d45912d4d  # frozen: 5.5.4
+  rev: 6bb47b7acc1554ecb59d2855e9110c447162f674  # frozen: 5.6.4
   hooks:
   - id: isort
 - repo: https://github.com/psf/black
@@ -24,7 +18,7 @@ repos:
   hooks:
   - id: black
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: d6e31aeb109d8ff85282c3fd632c89f8ea7b0dee  # frozen: v0.782
+  rev: f3bfcb5479b4fa73b3fbb95a6390420575f20b51  # frozen: v0.790
   hooks:
   - id: mypy
     args:
@@ -46,7 +40,7 @@ repos:
   hooks:
   - id: docformatter
 - repo: https://github.com/executablebooks/mdformat
-  rev: 01c43e0d023cff146d1fbb8eddb5d0d62b8787d3  # frozen: 0.3.3
+  rev: 492440cdb4f3ca87eff24dea09c85881b0e5d597  # frozen: 0.4.0
   hooks:
   - id: mdformat
     additional_dependencies:
