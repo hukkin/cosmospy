@@ -5,7 +5,7 @@ from typing import Any, Dict, List
 
 import ecdsa
 
-from cosmospy._wallet import privkey_to_address, privkey_to_pubkey
+from cosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_pubkey
 from cosmospy.typing import SyncMode
 
 
@@ -29,7 +29,7 @@ class Transaction:
         fee_denom: str = "uatom",
         memo: str = "",
         chain_id: str = "cosmoshub-3",
-        hrp: str = "cosmoshub",
+        hrp: str = DEFAULT_BECH32_HRP,
         sync_mode: SyncMode = "sync",
     ) -> None:
         self._privkey = privkey
