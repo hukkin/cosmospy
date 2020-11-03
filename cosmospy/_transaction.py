@@ -29,6 +29,7 @@ class Transaction:
         fee_denom: str = "uatom",
         memo: str = "",
         chain_id: str = "cosmoshub-3",
+        hrp: str = "cosmoshub",
         sync_mode: SyncMode = "sync",
     ) -> None:
         self._privkey = privkey
@@ -39,6 +40,7 @@ class Transaction:
         self._gas = gas
         self._memo = memo
         self._chain_id = chain_id
+        self._hrp = hrp
         self._sync_mode = sync_mode
         self._msgs: List[dict] = []
 
@@ -46,7 +48,7 @@ class Transaction:
         transfer = {
             "type": "cosmos-sdk/MsgSend",
             "value": {
-                "from_address": privkey_to_address(self._privkey),
+                "from_address": privkey_to_address(self._privkey, hrp=self._hrp),
                 "to_address": recipient,
                 "amount": [{"denom": denom, "amount": str(amount)}],
             },
