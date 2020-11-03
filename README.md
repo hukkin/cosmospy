@@ -7,7 +7,7 @@
 
 <!--- Don't edit the version line below manually. Let bump2version do it for you. -->
 
-> Version 5.1.0
+> Version 5.1.1
 
 > Tools for Cosmos wallet management and offline transaction signing
 
