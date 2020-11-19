@@ -29,10 +29,10 @@ include = ["cosmospy/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
-ecdsa = ">=0.14.0, <0.17.0"
-bech32 = "^1.1.0"
-mnemonic = ">=0.19, <0.20"
-hdwallets = "^0.1.0"
+ecdsa = ">=0.14.0"
+bech32 = ">=1.1.0"
+mnemonic = ">=0.19"
+hdwallets = ">=0.1.0"
 typing-extensions = { version = "^3.7.4", python = "<3.8" }
 
 [tool.poetry.dev-dependencies]
@@ -62,7 +62,6 @@ bump2version = "*"
 
 [tool.black]
 line-length = 99
-target_version = ['py36', 'py37', 'py38']
 include = '\.pyi?$'
 exclude = '''
 (
