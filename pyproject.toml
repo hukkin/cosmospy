@@ -42,46 +42,14 @@ pytest-randomly = "*"
 pytest-cov = "*"
 pytest-mock = "*"
 
-# Linting
-isort = "*"
-black = { version = "*", allow-prereleases = true }
-flake8 = "*"
-flake8-bugbear = "*"
-flake8-builtins = "*"
-flake8-comprehensions = "*"
-mypy = "*"
-docformatter = "*"
-mdformat = "*"
-mdformat-black = "*"
-mdformat-toc = "*"
-
 # Tools
+mypy = "*"
 pre-commit = "*"
 bump2version = "*"
 
 
 [tool.black]
 line-length = 99
-include = '\.pyi?$'
-exclude = '''
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.hg
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | venv
-    | _build
-    | buck-out
-    | build
-    | dist
-  )/
-  | tester.py        # also separately exclude a file named tester.py in
-                     # the root of the project
-)
-'''
 
 
 [tool.isort]
