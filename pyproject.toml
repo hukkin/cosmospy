@@ -28,7 +28,7 @@ include = ["cosmospy/py.typed"]
 "Changelog" = "https://github.com/hukkinj1/cosmospy/blob/master/CHANGELOG.md"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.1"
 ecdsa = ">=0.14.0"
 bech32 = ">=1.1.0"
 mnemonic = ">=0.19"
