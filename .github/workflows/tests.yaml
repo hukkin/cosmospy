@@ -30,7 +30,7 @@ jobs:
         poetry config virtualenvs.create false
         poetry install --no-interaction --no-ansi
     - name: Linters
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.6'
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.7'
       run: |
         mypy .
         pre-commit run -a
@@ -38,7 +38,7 @@ jobs:
       run: |
         pytest --cov --cov-fail-under=95
     - name: Report coverage
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.6'
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.7'
       run: |
         pip install codecov
         codecov
