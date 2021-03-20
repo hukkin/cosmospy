@@ -5,7 +5,7 @@ repos:
   - id: check-yaml
   - id: check-toml
 - repo: https://github.com/pre-commit/pygrep-hooks
-  rev: 4f4c0a4cda27980be153cca2cb7710c9fec57ba3  # frozen: v1.7.0
+  rev: 58ace0d0dc6b2439b737a5ea353f836f6a2bad13  # frozen: v1.8.0
   hooks:
   - id: python-use-type-annotations
   - id: python-check-blanket-noqa
@@ -18,7 +18,7 @@ repos:
   hooks:
   - id: black
 - repo: https://gitlab.com/pycqa/flake8
-  rev: bb6a530e28acab8d3551043b3e8709db8bcbac6b  # frozen: 3.8.4
+  rev: 56370aae451722f9d77a5ccd6fb6e231a4a8e651  # frozen: 3.9.0
   hooks:
   - id: flake8
     additional_dependencies:
@@ -30,7 +30,7 @@ repos:
   hooks:
   - id: docformatter
 - repo: https://github.com/executablebooks/mdformat
-  rev: f70155cd5aec40cdc911f1e5c3ac16f28d5ab0ba  # frozen: 0.5.6
+  rev: 53980a1e7094a1da5aa947a5d62afdeb0a05be2c  # frozen: 0.6.1
   hooks:
   - id: mdformat
     additional_dependencies:
