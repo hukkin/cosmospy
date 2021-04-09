@@ -1,4 +1,4 @@
-__version__ = "5.1.1"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
+__version__ = "6.0.0"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
 
 from hdwallets import BIP32DerivationError as BIP32DerivationError  # noqa: F401
 
