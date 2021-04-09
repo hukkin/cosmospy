@@ -14,15 +14,15 @@
 
 <!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=2 -->
 
-- [Installing](<#installing>)
-- [Usage](<#usage>)
-  - [Generating a wallet](<#generating-a-wallet>)
-  - [Converter functions](<#converter-functions>)
-    - [Mnemonic seed to private key](<#mnemonic-seed-to-private-key>)
-    - [Private key to public key](<#private-key-to-public-key>)
-    - [Public key to address](<#public-key-to-address>)
-    - [Private key to address](<#private-key-to-address>)
-  - [Signing transactions](<#signing-transactions>)
+- [Installing](#installing)
+- [Usage](#usage)
+  - [Generating a wallet](#generating-a-wallet)
+  - [Converter functions](#converter-functions)
+    - [Mnemonic seed to private key](#mnemonic-seed-to-private-key)
+    - [Private key to public key](#private-key-to-public-key)
+    - [Public key to address](#public-key-to-address)
+    - [Private key to address](#private-key-to-address)
+  - [Signing transactions](#signing-transactions)
 
 <!-- mdformat-toc end -->
 
