@@ -119,7 +119,7 @@ tx = Transaction(
     fee=1000,
     gas=70000,
     memo="",
-    chain_id="cosmoshub-3",
+    chain_id="cosmoshub-4",
     sync_mode="sync",
 )
 tx.add_transfer(
