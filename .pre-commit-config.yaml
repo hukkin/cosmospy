@@ -10,13 +10,24 @@ repos:
   - id: python-use-type-annotations
   - id: python-check-blanket-noqa
 - repo: https://github.com/timothycrosley/isort
-  rev: 473d150c1db60f4614a574e30993e9e0d3ca0cce  # frozen: 5.7.0
+  rev: a6222a8a125ec719724e628a5d3d0d5c60923281  # frozen: 5.8.0
   hooks:
   - id: isort
 - repo: https://github.com/psf/black
   rev: e66be67b9b6811913470f70c28b4d50f94d05b22  # frozen: 20.8b1
   hooks:
   - id: black
+- repo: https://github.com/myint/docformatter
+  rev: 67919ee01837761f2d954d7fbb08c12cdd38ec5a  # frozen: v1.4
+  hooks:
+  - id: docformatter
+- repo: https://github.com/executablebooks/mdformat
+  rev: f3f9f378144e4866f58b7b58011d62abe8428295  # frozen: 0.6.4
+  hooks:
+  - id: mdformat
+    additional_dependencies:
+    - mdformat-black
+    - mdformat-toc
 - repo: https://gitlab.com/pycqa/flake8
   rev: 56370aae451722f9d77a5ccd6fb6e231a4a8e651  # frozen: 3.9.0
   hooks:
@@ -25,14 +36,3 @@ repos:
     - flake8-bugbear
     - flake8-builtins
     - flake8-comprehensions
-- repo: https://github.com/myint/docformatter
-  rev: 67919ee01837761f2d954d7fbb08c12cdd38ec5a  # frozen: v1.4
-  hooks:
-  - id: docformatter
-- repo: https://github.com/executablebooks/mdformat
-  rev: 53980a1e7094a1da5aa947a5d62afdeb0a05be2c  # frozen: 0.6.1
-  hooks:
-  - id: mdformat
-    additional_dependencies:
-    - mdformat-black
-    - mdformat-toc

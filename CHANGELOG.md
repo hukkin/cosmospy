@@ -2,6 +2,11 @@
 
 This log documents all public API breaking backwards incompatible changes.
 
+## 6.0.0
+
+- Changed
+  - `transactions.Transaction` keyword argument `chain_id` default value changed from "cosmoshub-3" to "cosmoshub-4"
+
 ## 5.0.0
 
 - Added

@@ -28,7 +28,7 @@ class Transaction:
         gas: int,
         fee_denom: str = "uatom",
         memo: str = "",
-        chain_id: str = "cosmoshub-3",
+        chain_id: str = "cosmoshub-4",
         hrp: str = DEFAULT_BECH32_HRP,
         sync_mode: SyncMode = "sync",
     ) -> None:
