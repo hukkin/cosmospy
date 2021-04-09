@@ -127,6 +127,14 @@ tx.add_transfer(
 )
 tx.add_transfer(recipient="cosmos1lzumfk6xvwf9k9rk72mqtztv867xyem393um48", amount=123)
 pushable_tx = tx.get_pushable()
+
+
+# Optionally submit the transaction using your preferred method.
+# This example uses the httpx library.
+import httpx
+
+api_base_url = "https://node.atomscan.com"
+httpx.post(api_base_url + "/txs", data=pushable_tx)
 ```
 
 One or more token transfers can be added to a transaction by calling the `add_transfer` method.
