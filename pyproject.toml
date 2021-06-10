@@ -6,9 +6,9 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "cosmospy"
 version = "6.0.0"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
-authors = ["hukkinj1 <hukkinj1@users.noreply.github.com>"]
+authors = ["hukkin <hukkin@users.noreply.github.com>"]
 description = "Tools for Cosmos wallet management and offline transaction signing"
-repository = "https://github.com/hukkinj1/cosmospy"
+repository = "https://github.com/hukkin/cosmospy"
 readme = "README.md"
 license = "MIT"
 classifiers = [
@@ -25,7 +25,7 @@ packages = [
 include = ["cosmospy/py.typed"]
 
 [tool.poetry.urls]
-"Changelog" = "https://github.com/hukkinj1/cosmospy/blob/master/CHANGELOG.md"
+"Changelog" = "https://github.com/hukkin/cosmospy/blob/master/CHANGELOG.md"
 
 [tool.poetry.dependencies]
 python = "^3.6.1"

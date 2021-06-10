@@ -1,5 +1,5 @@
-[![Build Status](https://github.com/hukkinj1/cosmospy/workflows/Tests/badge.svg?branch=master)](https://github.com/hukkinj1/cosmospy/actions?query=workflow%3ATests+branch%3Amaster+event%3Apush)
-[![codecov.io](https://codecov.io/gh/hukkinj1/cosmospy/branch/master/graph/badge.svg)](https://codecov.io/gh/hukkinj1/cosmospy)
+[![Build Status](https://github.com/hukkin/cosmospy/workflows/Tests/badge.svg?branch=master)](https://github.com/hukkin/cosmospy/actions?query=workflow%3ATests+branch%3Amaster+event%3Apush)
+[![codecov.io](https://codecov.io/gh/hukkin/cosmospy/branch/master/graph/badge.svg)](https://codecov.io/gh/hukkin/cosmospy)
 [![PyPI version](https://img.shields.io/pypi/v/cosmospy)](https://pypi.org/project/cosmospy)
 
 # cosmospy
@@ -10,7 +10,7 @@
 
 > Tools for Cosmos wallet management and offline transaction signing
 
-**Table of Contents**  *generated with [mdformat-toc](https://github.com/hukkinj1/mdformat-toc)*
+**Table of Contents**  *generated with [mdformat-toc](https://github.com/hukkin/mdformat-toc)*
 
 <!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=2 -->
 
