@@ -1,3 +1,7 @@
+from unittest import mock
+
+from ward import test
+
 from cosmospy import generate_wallet, privkey_to_address, privkey_to_pubkey, seed_to_privkey
 from cosmospy.typing import Wallet
 
@@ -26,33 +30,37 @@ seed_test_vector: Wallet = {
 }
 
 
-def test_seed_to_privkey():
+@test("seed to privkey")
+def _():
     assert (
         seed_to_privkey(seed_test_vector["seed"], path=seed_test_vector["derivation_path"])
         == seed_test_vector["private_key"]
     )
 
 
-def test_privkey_to_pubkey():
+@test("privkey to pubkey")  # type: ignore[no-redef]
+def _():
     assert privkey_to_pubkey(test_vector["private_key"]) == test_vector["public_key"]
 
 
-def test_privkey_to_address():
+@test("privkey to address")  # type: ignore[no-redef]
+def _():
     assert privkey_to_address(test_vector["private_key"]) == test_vector["address"]
 
 
-def test_generate_wallet(mocker):
-    mock_urandom = mocker.patch("os.urandom")
-    mock_urandom.return_value = b"\x1e\xd2\x7f9\xa7\x0em\xfd\xa0\xb4\xaa\xc4\x0b\x83\x0e%\xbf\xe6DG\x7f:a\xe6#qa\x1ch5D\xa9"  # noqa: E501
-    expected_wallet = {
-        "seed": "burst negative solar evoke traffic yard lizard next series foster seminar enter wrist captain bulb trap giggle country sword season shoot boy bargain deal",  # noqa: E501
-        "derivation_path": "m/44'/118'/0'/0/0",
-        "private_key": bytes.fromhex(
-            "bb8ac5bf9c342852fa5943d1366375c6f985d4601e596f23c5a49d095bfb2878"
-        ),
-        "public_key": bytes.fromhex(
-            "03a7cc51198fc666901ec7b627926dad0c85d128ebe3251a132f009dcde1d64e03"
-        ),
-        "address": "cosmos1dep39rnnwztpt63jx0htxrkt3lgku2cdr5qawx",
-    }
-    assert generate_wallet() == expected_wallet
+@test("generate wallet")  # type: ignore[no-redef]
+def _():
+    with mock.patch("os.urandom") as mock_urandom:
+        mock_urandom.return_value = b"\x1e\xd2\x7f9\xa7\x0em\xfd\xa0\xb4\xaa\xc4\x0b\x83\x0e%\xbf\xe6DG\x7f:a\xe6#qa\x1ch5D\xa9"  # noqa: E501
+        expected_wallet = {
+            "seed": "burst negative solar evoke traffic yard lizard next series foster seminar enter wrist captain bulb trap giggle country sword season shoot boy bargain deal",  # noqa: E501
+            "derivation_path": "m/44'/118'/0'/0/0",
+            "private_key": bytes.fromhex(
+                "bb8ac5bf9c342852fa5943d1366375c6f985d4601e596f23c5a49d095bfb2878"
+            ),
+            "public_key": bytes.fromhex(
+                "03a7cc51198fc666901ec7b627926dad0c85d128ebe3251a132f009dcde1d64e03"
+            ),
+            "address": "cosmos1dep39rnnwztpt63jx0htxrkt3lgku2cdr5qawx",
+        }
+        assert generate_wallet() == expected_wallet

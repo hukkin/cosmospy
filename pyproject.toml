@@ -37,12 +37,7 @@ typing-extensions = { version = "^3.7.4", python = "<3.8" }
 
 [tool.poetry.dev-dependencies]
 # Tests
-pytest = "*"
-pytest-randomly = "*"
-pytest-cov = "*"
-pytest-mock = "*"
-# This is a dependency of pytest-cov that we list explicitly because we
-# want the "toml" extra for pyproject.toml support.
+ward = "*"
 coverage = { version = "*", extras = ["toml"] }
 
 # Tools
@@ -69,10 +64,40 @@ profile = "black"
 line_length = 99
 
 
-[tool.pytest.ini_options]
-addopts = "--strict-markers --strict-config"
-xfail_strict = true
+[tool.ward]
+order = "random"
 
 
 [tool.coverage.run]
 omit = ["tests/*", "*/site-packages/*"]
+
+
+[tool.mypy]
+show_error_codes = true
+warn_unreachable = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+# Disabling incremental mode is required for `warn_unused_configs = true` to work
+incremental = false
+disallow_untyped_defs = true
+check_untyped_defs = true
+strict_equality = true
+implicit_reexport = false
+no_implicit_optional = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = "ecdsa.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "mnemonic.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "ward.*"
+ignore_missing_imports = true

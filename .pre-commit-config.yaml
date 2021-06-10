@@ -1,6 +1,6 @@
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: 6e2418c5521b7d606e72914dced3253f9ace1205  # frozen: v3.4.0
+  rev: 38b88246ccc552bffaaf54259d064beeee434539  # frozen: v4.0.1
   hooks:
   - id: check-yaml
   - id: check-toml
@@ -14,7 +14,7 @@ repos:
   hooks:
   - id: isort
 - repo: https://github.com/psf/black
-  rev: e66be67b9b6811913470f70c28b4d50f94d05b22  # frozen: 20.8b1
+  rev: cf75673e1a2c993025a2113ce194d5c65f311c85  # frozen: 21.5b2
   hooks:
   - id: black
 - repo: https://github.com/myint/docformatter
@@ -22,14 +22,14 @@ repos:
   hooks:
   - id: docformatter
 - repo: https://github.com/executablebooks/mdformat
-  rev: f3f9f378144e4866f58b7b58011d62abe8428295  # frozen: 0.6.4
+  rev: 767a107bac7c4503d9960bfd73f999c9950b69bf  # frozen: 0.7.6
   hooks:
   - id: mdformat
     additional_dependencies:
     - mdformat-black
     - mdformat-toc
 - repo: https://gitlab.com/pycqa/flake8
-  rev: 56370aae451722f9d77a5ccd6fb6e231a4a8e651  # frozen: 3.9.0
+  rev: dcd740bc0ebaf2b3d43e59a0060d157c97de13f3  # frozen: 3.9.2
   hooks:
   - id: flake8
     additional_dependencies:

@@ -1,9 +1,12 @@
 from unittest.mock import Mock
 
+from ward import test
+
 from cosmospy import Transaction
 
 
-def test_sign():
+@test("sign transaction")
+def _():
     private_key = bytes.fromhex("2afc5a66b30e7521d553ec8e6f7244f906df97477248c30c103d7b3f2c671fef")
     unordered_sign_message = {
         "chain_id": "tendermint_test",
@@ -39,7 +42,7 @@ def test_sign():
         fee=dummy_num,
         gas=dummy_num,
     )
-    tx._get_sign_message = Mock(return_value=unordered_sign_message)  # type: ignore
+    tx._get_sign_message = Mock(return_value=unordered_sign_message)
 
     expected_signature = (
         "YjJhlAf7aCnUtLyBNDp9e6LKuNgV7hJC3rmm0Wro5nBsIPVtWzjuobsp/AhR5Kht+HcRF2zBq4AfoNQMIbY6fw=="
@@ -49,7 +52,8 @@ def test_sign():
     assert actual_signature == expected_signature
 
 
-def test_get_pushable_tx():
+@test("make transaction pushable to the HTTP API")  # type: ignore[no-redef]
+def _():
     expected_pushable_tx = '{"tx":{"msg":[{"type":"cosmos-sdk/MsgSend","value":{"from_address":"cosmos1lgharzgds89lpshr7q8kcmd2esnxkfpwvuz5tr","to_address":"cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf","amount":[{"denom":"uatom","amount":"387000"}]}}],"fee":{"gas":"37000","amount":[{"denom":"uatom","amount":"1000"}]},"memo":"","signatures":[{"signature":"chbQMmrg18ZQSt3q3HzW8S8pMyGs/TP/WIbbCyKFd5IiReUY/xJB2yRDEtF92yYBjxEU02z9JNE7VCQmmxWdQw==","pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A49sjCd3Eul+ZXyof7qO460UaO73otrmySHyTNSLW+Xn"},"account_number":"11335","sequence":"0"}]},"mode":"sync"}'  # noqa: E501
 
     _tx_total_cost = 388000

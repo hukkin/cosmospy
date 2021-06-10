@@ -34,9 +34,10 @@ jobs:
       run: |
         mypy .
         pre-commit run -a
-    - name: Test with pytest
+    - name: Test with Ward
       run: |
-        pytest --cov --cov-fail-under=95
+        coverage run -m ward
+        coverage report --fail-under=95
     - name: Report coverage
       if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.7'
       run: |

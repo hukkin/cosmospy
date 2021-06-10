@@ -18,7 +18,7 @@
 1. After making changes and having written tests, make sure tests pass:
 
    ```bash
-   pytest
+   ward
    ```
 
 1. Commit, push, and make a PR.
