@@ -55,6 +55,16 @@ class Transaction:
         }
         self._msgs.append(transfer)
 
+   def add_multi_transfer(self, data_inputF: str, data_outputF: str, denom: str = "uatom") -> None:
+	   transfer = {
+		   "type": "cosmos-sdk/MsgMultiSend",
+		   "value": {
+			   "inputs": data_inputF,
+			   "outputs": data_outputF
+            }
+        }
+        self._msgs.append(transfer)        
+        
     def get_pushable(self) -> str:
         pubkey = privkey_to_pubkey(self._privkey)
         base64_pubkey = base64.b64encode(pubkey).decode("utf-8")
