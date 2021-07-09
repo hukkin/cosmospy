@@ -97,7 +97,3 @@ ignore_missing_imports = true
 [[tool.mypy.overrides]]
 module = "mnemonic.*"
 ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "ward.*"
-ignore_missing_imports = true
