@@ -93,7 +93,3 @@ disallow_untyped_defs = false
 [[tool.mypy.overrides]]
 module = "ecdsa.*"
 ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "mnemonic.*"
-ignore_missing_imports = true
