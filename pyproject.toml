@@ -28,12 +28,12 @@ include = ["cosmospy/py.typed"]
 "Changelog" = "https://github.com/hukkin/cosmospy/blob/master/CHANGELOG.md"
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.7"
 ecdsa = ">=0.14.0"
 bech32 = ">=1.1.0"
 mnemonic = ">=0.19"
 hdwallets = ">=0.1.0"
-typing-extensions = { version = "^3.7.4", python = "<3.8" }
+typing-extensions = { version = ">=3.7.4", python = "<3.8" }
 
 [tool.poetry.dev-dependencies]
 # Tests

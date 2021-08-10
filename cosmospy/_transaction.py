@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 import base64
 import hashlib
 import json
-from typing import Any, Dict, List
+from typing import Any
 
 import ecdsa
 
@@ -42,7 +44,7 @@ class Transaction:
         self._chain_id = chain_id
         self._hrp = hrp
         self._sync_mode = sync_mode
-        self._msgs: List[dict] = []
+        self._msgs: list[dict] = []
 
     def add_transfer(self, recipient: str, amount: int, denom: str = "uatom") -> None:
         transfer = {
@@ -91,7 +93,7 @@ class Transaction:
         signature_base64_str = base64.b64encode(signature_compact).decode("utf-8")
         return signature_base64_str
 
-    def _get_sign_message(self) -> Dict[str, Any]:
+    def _get_sign_message(self) -> dict[str, Any]:
         return {
             "chain_id": self._chain_id,
             "account_number": str(self._account_num),

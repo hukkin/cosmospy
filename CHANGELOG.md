@@ -2,6 +2,11 @@
 
 This log documents all public API breaking backwards incompatible changes.
 
+## **unreleased**
+
+- Removed
+  - Python 3.6 support
+
 ## 6.0.0
 
 - Changed
