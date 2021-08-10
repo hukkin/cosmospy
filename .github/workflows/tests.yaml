@@ -3,7 +3,7 @@ name: Tests
 on:
   push:
     branches: [ master ]
-    tags: [ '*.*.*' ]
+    tags: [ '[0-9]+.[0-9]+.[0-9]+*' ]
   pull_request:
     branches: [ master ]
 
@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version: ['3.6', '3.7', '3.8', '3.9']
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
@@ -46,23 +46,24 @@ jobs:
 
   pypi-publish:
     # Only publish if all other jobs succeed
-    needs:
-      - build
+    needs: [ build ]
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-      - name: Install Poetry
-        run: |
-          pip install "poetry==1.1.7"
-      - name: Build and publish
-        run: |
-          # TODO: Remove the first command as soon as this Poetry bug is fixed: https://github.com/python-poetry/poetry/issues/2210
-          poetry config http-basic.pypi "__token__" "${POETRY_PYPI_TOKEN_PYPI}"
-          poetry build
-          poetry publish
-        env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install build and publish tools
+      run: |
+        pip install build twine
+    - name: Build and check
+      run: |
+        rm -rf dist/ && python -m build
+        twine check dist/*
+    - name: Publish
+      run: |
+        twine upload dist/*
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}

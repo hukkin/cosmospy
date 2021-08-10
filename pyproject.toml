@@ -45,6 +45,9 @@ mypy = "*"
 pre-commit = "*"
 bump2version = "*"
 
+[tool.poetry.build]
+generate-setup-file = false
+
 
 [tool.black]
 line-length = 99
