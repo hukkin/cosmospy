@@ -36,3 +36,13 @@ repos:
     - flake8-bugbear
     - flake8-builtins
     - flake8-comprehensions
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: 5cf22ccb774a8be8f47dfe4c1e8c4f177c608cbf  # frozen: v0.910-1
+  hooks:
+  - id: mypy
+    args: ["--scripts-are-modules"]
+    additional_dependencies:
+    - bech32
+    - hdwallets
+    - mnemonic
+    - ward

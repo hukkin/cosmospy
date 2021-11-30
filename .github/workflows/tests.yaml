@@ -26,13 +26,11 @@ jobs:
 
     - name: Installation (deps and package)
       run: |
-        pip install "poetry==1.1.11"
-        poetry config virtualenvs.create false
-        poetry install --no-interaction --no-ansi
+        pip install . -r tests/requirements.txt
     - name: Linters
       if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.7'
       run: |
-        mypy .
+        pip install pre-commit
         pre-commit run -a
     - name: Test with Ward
       run: |

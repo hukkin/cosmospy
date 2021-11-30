@@ -1,52 +1,37 @@
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["flit_core>=3.2.0,<4"]
+build-backend = "flit_core.buildapi"
 
 
-[tool.poetry]
+[project]
 name = "cosmospy"
 version = "6.0.0"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
-authors = ["hukkin <hukkin@users.noreply.github.com>"]
 description = "Tools for Cosmos wallet management and offline transaction signing"
-repository = "https://github.com/hukkin/cosmospy"
+authors = [
+    { name = "Taneli Hukkinen", email = "hukkin@users.noreply.github.com" },
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
 readme = "README.md"
-license = "MIT"
 classifiers = [
     "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
 keywords = ["cosmos", "blockchain", "atom", "cryptocurrency"]
-
-packages = [
-    {include = "cosmospy"},
+dependencies = [
+    "ecdsa >=0.14.0",
+    "bech32 >=1.1.0",
+    "mnemonic >=0.19",
+    "hdwallets >=0.1.0",
+    "typing-extensions >=3.7.4; python_version < '3.8'",
 ]
-include = ["cosmospy/py.typed"]
 
-[tool.poetry.urls]
+[project.urls]
+"Homepage" = "https://github.com/hukkin/cosmospy"
 "Changelog" = "https://github.com/hukkin/cosmospy/blob/master/CHANGELOG.md"
-
-[tool.poetry.dependencies]
-python = "^3.7"
-ecdsa = ">=0.14.0"
-bech32 = ">=1.1.0"
-mnemonic = ">=0.19"
-hdwallets = ">=0.1.0"
-typing-extensions = { version = ">=3.7.4", python = "<3.8" }
-
-[tool.poetry.dev-dependencies]
-# Tests
-ward = "*"
-coverage = { version = "*", extras = ["toml"] }
-
-# Tools
-mypy = "*"
-pre-commit = "*"
-bump2version = "*"
-
-[tool.poetry.build]
-generate-setup-file = false
 
 
 [tool.black]
@@ -68,11 +53,25 @@ line_length = 99
 
 
 [tool.ward]
+path = ["tests"]
 order = "random"
 
 
 [tool.coverage.run]
-omit = ["tests/*", "*/site-packages/*"]
+source = ["cosmospy"]
+
+
+[tool.tox]
+legacy_tox_ini = '''
+[tox]
+isolated_build = True
+
+[testenv:py{37,38,39,310}]
+description = run tests
+deps = -r tests/requirements.txt
+commands =
+    ward {posargs}
+'''
 
 
 [tool.mypy]
