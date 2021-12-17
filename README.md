@@ -133,11 +133,14 @@ pushable_tx = tx.get_pushable()
 # This example uses the httpx library.
 import httpx
 
-api_base_url = "https://node.atomscan.com"
-httpx.post(api_base_url + "/txs", data=pushable_tx)
+api_base_url = "https://rpc.cosmos.network"
+httpx.post(api_base_url + "/broadcast_tx_async", data=pushable_tx)
 ```
 
 One or more token transfers can be added to a transaction by calling the `add_transfer` method.
 
 When the transaction is fully prepared, calling `get_pushable` will return a signed transaction in the form of a JSON string.
-This can be used as request body when calling the `POST /txs` endpoint of the [Cosmos REST API](https://cosmos.network/rpc).
+This can be used as request body when calling the `POST /broadcast_tx_async` endpoint of the [Cosmos RPC](https://cosmos.network/rpc).
+
+To submit a transaction in sync mode you can use `/broadcast_tx_sync`
+To submit a transaction and waiting for the commit use `/broadcast_tx_commit`
