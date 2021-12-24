@@ -3,19 +3,17 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
-import requests
 
 import ecdsa
+import requests
 
-from cosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_pubkey
 from cosmospy._typing import SyncMode
-
-import cosmospy.interfaces.tx_pb2 as tx
-import cosmospy.interfaces.msg_send_pb2 as transfer
-import cosmospy.interfaces.coin_pb2 as coin
-import cosmospy.interfaces.pubkey_pb2 as pubkey
-
+from cosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_pubkey
 import cosmospy.interfaces.any_pb2 as Any
+import cosmospy.interfaces.coin_pb2 as coin
+import cosmospy.interfaces.msg_send_pb2 as transfer
+import cosmospy.interfaces.pubkey_pb2 as pubkey
+import cosmospy.interfaces.tx_pb2 as tx
 
 
 class Transaction:
@@ -28,18 +26,18 @@ class Transaction:
     """
 
     def __init__(
-            self,
-            *,
-            privkey: bytes,
-            account_num: int,
-            sequence: int,
-            fee: int,
-            gas: int,
-            fee_denom: str = "uatom",
-            memo: str = "",
-            chain_id: str = "cosmoshub-4",
-            hrp: str = DEFAULT_BECH32_HRP,
-            sync_mode: SyncMode = "broadcast_tx_sync",
+        self,
+        *,
+        privkey: bytes,
+        account_num: int,
+        sequence: int,
+        fee: int,
+        gas: int,
+        fee_denom: str = "uatom",
+        memo: str = "",
+        chain_id: str = "cosmoshub-4",
+        hrp: str = DEFAULT_BECH32_HRP,
+        sync_mode: SyncMode = "broadcast_tx_sync",
     ) -> None:
         self._privkey = privkey
         self._account_num = account_num
@@ -64,7 +62,7 @@ class Transaction:
         msg.amount.append(_amount)
         msg_any = Any.Any()
         msg_any.Pack(msg)
-        msg_any.type_url = '/cosmos.bank.v1beta1.MsgSend'
+        msg_any.type_url = "/cosmos.bank.v1beta1.MsgSend"
         self._tx_body.messages.append(msg_any)
 
     def get_pushable(self) -> str:
@@ -73,21 +71,17 @@ class Transaction:
         self._tx_raw.signatures.append(self._get_signatures())
         raw_tx = self._tx_raw.SerializeToString()
         tx_bytes = bytes(raw_tx)
-        tx_b64 = base64.b64encode(tx_bytes).decode('utf-8')
-        return json.dumps({
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": self._sync_mode,
-            "params": {
-                "tx": tx_b64
-            }
-        })
+        tx_b64 = base64.b64encode(tx_bytes).decode("utf-8")
+        return json.dumps(
+            {"jsonrpc": "2.0", "id": 1, "method": self._sync_mode, "params": {"tx": tx_b64}}
+        )
 
     def _get_signatures(self):
         privkey = ecdsa.SigningKey.from_string(self._privkey, curve=ecdsa.SECP256k1)
         signature_compact = privkey.sign_deterministic(
-            self._get_sign_doc().SerializeToString(), hashfunc=hashlib.sha256,
-            sigencode=ecdsa.util.sigencode_string_canonize
+            self._get_sign_doc().SerializeToString(),
+            hashfunc=hashlib.sha256,
+            sigencode=ecdsa.util.sigencode_string_canonize,
         )
         return signature_compact
 
@@ -122,7 +116,7 @@ class Transaction:
         signer_infos = tx.SignerInfo()
         signer_infos.sequence = self._sequence
         signer_infos.public_key.Pack(_pubkey)
-        signer_infos.public_key.type_url = '/cosmos.crypto.secp256k1.PubKey'
+        signer_infos.public_key.type_url = "/cosmos.crypto.secp256k1.PubKey"
         signer_infos.mode_info.single.mode = 1
         return signer_infos
 
@@ -133,4 +127,6 @@ class Transaction:
             res = res.json()
             return res
         else:
-            raise Exception("Broadcact failed to run by returning code of {}".format(res.status_code))
+            raise Exception(
+                "Broadcact failed to run by returning code of {}".format(res.status_code)
+            )
