@@ -1,0 +1,24 @@
+syntax = "proto3";
+package cyber.graph.v1beta1;
+
+import "gogo.proto";
+
+option go_package = "github.com/cybercongress/go-cyber/x/graph/types";
+option (gogoproto.goproto_getters_all) = false;
+option (gogoproto.equal_all) = false;
+
+message MsgCyberlink {
+    option (gogoproto.equal)           = false;
+    option (gogoproto.goproto_getters) = false;
+
+    string   neuron                         = 1;
+    repeated Link links = 2 [(gogoproto.nullable) = false];
+}
+
+message Link {
+    option (gogoproto.equal)           = false;
+    option (gogoproto.goproto_getters) = false;
+
+    string from = 1;
+    string to   = 2;
+}
