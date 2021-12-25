@@ -52,7 +52,9 @@ class Transaction:
         self._tx_body = tx.TxBody()
         self._tx_raw = tx.TxRaw()
 
-    def add_transfer(self, recipient: str, amount: int, denom: str = "uatom", hrp: str = "cosmos") -> None:
+    def add_transfer(
+        self, recipient: str, amount: int, denom: str = "uatom", hrp: str = "cosmos"
+    ) -> None:
         msg = transfer.MsgSend()
         msg.from_address = privkey_to_address(self._privkey, hrp=hrp)
         msg.to_address = recipient

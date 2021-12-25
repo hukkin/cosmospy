@@ -128,7 +128,6 @@ tx.add_transfer(
 tx.add_transfer(recipient="cosmos1lzumfk6xvwf9k9rk72mqtztv867xyem393um48", amount=123)
 
 
-
 # Submit the transaction
 rpc_url = "https://rpc.cosmos.network/"
 
@@ -140,8 +139,6 @@ import requests
 
 pushable_tx = tx.get_pushable()
 r = requests.post(rpc_url, data=pushable_tx)
-
-
 ```
 
 One or more token transfers can be added to a transaction by calling the `add_transfer` method.
