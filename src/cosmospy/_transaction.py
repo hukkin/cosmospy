@@ -33,9 +33,9 @@ class Transaction:
         sequence: int,
         fee: int,
         gas: int,
-        fee_denom: str = "uatom",
+        fee_denom: str = "uosmo",
         memo: str = "",
-        chain_id: str = "cosmoshub-4",
+        chain_id: str = "osmosis-testnet-0",
         hrp: str = DEFAULT_BECH32_HRP,
         sync_mode: SyncMode = "broadcast_tx_sync",
     ) -> None:
@@ -53,7 +53,7 @@ class Transaction:
         self._tx_raw = tx.TxRaw()
 
     def add_transfer(
-        self, recipient: str, amount: int, denom: str = "uatom", hrp: str = "cosmos"
+        self, recipient: str, amount: int, denom: str = "uosmo", hrp: str = "osmo"
     ) -> None:
         msg = transfer.MsgSend()
         msg.from_address = privkey_to_address(self._privkey, hrp=hrp)
@@ -75,7 +75,7 @@ class Transaction:
         tx_bytes = bytes(raw_tx)
         tx_b64 = base64.b64encode(tx_bytes).decode("utf-8")
         return json.dumps(
-            {"jsonrpc": "2.0", "id": 1, "method": self._sync_mode, "params": {"tx": tx_b64}}
+            { "tx_bytes": tx_b64, "mode": "BROADCAST_MODE_SYNC"}
         )
 
     def _get_signatures(self):
