@@ -126,15 +126,22 @@ tx.add_transfer(
     recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=387000
 )
 tx.add_transfer(recipient="cosmos1lzumfk6xvwf9k9rk72mqtztv867xyem393um48", amount=123)
+
+
+
+# Submit the transaction
+rpc_url = "https://rpc.cosmos.network/"
+
+# Method 1
+r = tx.broadcast(url=rpc_url)
+
+# Method 2
+import requests
+
 pushable_tx = tx.get_pushable()
+r = requests.post(rpc_url, data=pushable_tx)
 
 
-# Optionally submit the transaction using your preferred method.
-# This example uses the httpx library.
-import httpx
-
-api_base_url = "https://node.atomscan.com"
-httpx.post(api_base_url + "/txs", data=pushable_tx)
 ```
 
 One or more token transfers can be added to a transaction by calling the `add_transfer` method.
