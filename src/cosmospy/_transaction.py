@@ -33,9 +33,10 @@ class Transaction:
         sequence: int,
         fee: int,
         gas: int,
-        fee_denom: str = "uosmo",
+        fee_denom: str = "uatom",
+        fee_account: str = "",
         memo: str = "",
-        chain_id: str = "osmosis-testnet-0",
+        chain_id: str = "cosmoshub-4",
         hrp: str = DEFAULT_BECH32_HRP,
         sync_mode: SyncMode = "broadcast_tx_sync",
     ) -> None:
@@ -44,6 +45,7 @@ class Transaction:
         self._sequence = sequence
         self._fee = fee
         self._fee_denom = fee_denom
+        self._fee_account = fee_account
         self._gas = gas
         self._memo = memo
         self._chain_id = chain_id
@@ -53,7 +55,7 @@ class Transaction:
         self._tx_raw = tx.TxRaw()
 
     def add_transfer(
-        self, recipient: str, amount: int, denom: str = "uosmo", hrp: str = "osmo"
+        self, recipient: str, amount: int, denom: str = "uatom", hrp: str = "cosmos"
     ) -> None:
         msg = transfer.MsgSend()
         msg.from_address = privkey_to_address(self._privkey, hrp=hrp)
@@ -99,6 +101,8 @@ class Transaction:
         _auth_info = tx.AuthInfo()
         _auth_info.signer_infos.append(self._get_signer_infos(self._get_pubkey()))
         _auth_info.fee.gas_limit = self._gas
+        if self._fee_account:
+            _auth_info.fee.granter = self._fee_account
         _auth_info.fee.amount.append(self._get_fee())
         return _auth_info
 
