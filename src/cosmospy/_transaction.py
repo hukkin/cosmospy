@@ -12,6 +12,7 @@ from cosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_
 import cosmospy.interfaces.any_pb2 as Any
 import cosmospy.interfaces.coin_pb2 as coin
 import cosmospy.interfaces.msg_send_pb2 as transfer
+import cosmospy.interfaces.ibc_transfer_pb2 as ibc_transfer
 import cosmospy.interfaces.pubkey_pb2 as pubkey
 import cosmospy.interfaces.tx_pb2 as tx
 
@@ -26,19 +27,19 @@ class Transaction:
     """
 
     def __init__(
-        self,
-        *,
-        privkey: bytes,
-        account_num: int,
-        sequence: int,
-        fee: int,
-        gas: int,
-        fee_denom: str = "uatom",
-        fee_account: str = "",
-        memo: str = "",
-        chain_id: str = "cosmoshub-4",
-        hrp: str = DEFAULT_BECH32_HRP,
-        sync_mode: SyncMode = "broadcast_tx_sync",
+            self,
+            *,
+            privkey: bytes,
+            account_num: int,
+            sequence: int,
+            fee: int,
+            gas: int,
+            fee_denom: str = "uatom",
+            fee_account: str = "",
+            memo: str = "",
+            chain_id: str = "cosmoshub-4",
+            hrp: str = DEFAULT_BECH32_HRP,
+            sync_mode: SyncMode = "BROADCAST_MODE_SYNC",
     ) -> None:
         self._privkey = privkey
         self._account_num = account_num
@@ -47,15 +48,15 @@ class Transaction:
         self._fee_denom = fee_denom
         self._fee_account = fee_account
         self._gas = gas
-        self._memo = memo
         self._chain_id = chain_id
         self._hrp = hrp
         self._sync_mode = sync_mode
         self._tx_body = tx.TxBody()
+        self._tx_body.memo = memo
         self._tx_raw = tx.TxRaw()
 
     def add_transfer(
-        self, recipient: str, amount: int, denom: str = "uatom", hrp: str = "cosmos"
+            self, recipient: str, amount: int, denom: str = "uatom", hrp: str = DEFAULT_BECH32_HRP
     ) -> None:
         msg = transfer.MsgSend()
         msg.from_address = privkey_to_address(self._privkey, hrp=hrp)
@@ -69,16 +70,40 @@ class Transaction:
         msg_any.type_url = "/cosmos.bank.v1beta1.MsgSend"
         self._tx_body.messages.append(msg_any)
 
-    def get_pushable(self) -> str:
+    def add_ibc_transfer(
+            self, recipient: str, amount: int, channel: str, denom: str = "uatom", hrp: str = DEFAULT_BECH32_HRP,
+            port: str = "transfer", timeout_height: int = 0, timeout_revision_number: int = 4,
+            timeout_timestamp: int = 0
+    ) -> None:
+        msg = ibc_transfer.MsgTransfer()
+        msg.source_port = port
+        msg.source_channel = channel
+        msg.sender = privkey_to_address(self._privkey, hrp=hrp)
+        msg.receiver = recipient
+        msg.token.denom = denom
+        msg.token.amount = str(amount)
+
+        if timeout_timestamp > 0:
+            msg.timeout_timestamp = timeout_timestamp
+        elif timeout_height > 0:
+            msg.timeout_height.revision_height = timeout_height
+            msg.timeout_height.revision_number = timeout_revision_number
+        else:
+            raise ValueError("You have to set either a timeout height or a timeout timestamp")
+
+        msg_any = Any.Any()
+        msg_any.Pack(msg)
+        msg_any.type_url = "/ibc.applications.transfer.v1.MsgTransfer"
+        self._tx_body.messages.append(msg_any)
+
+    def _get_tx_bytes(self) -> str:
         self._tx_raw.body_bytes = self._tx_body.SerializeToString()
         self._tx_raw.auth_info_bytes = self._get_auth_info().SerializeToString()
         self._tx_raw.signatures.append(self._get_signatures())
         raw_tx = self._tx_raw.SerializeToString()
         tx_bytes = bytes(raw_tx)
         tx_b64 = base64.b64encode(tx_bytes).decode("utf-8")
-        return json.dumps(
-            { "tx_bytes": tx_b64, "mode": "BROADCAST_MODE_SYNC"}
-        )
+        return tx_b64
 
     def _get_signatures(self):
         privkey = ecdsa.SigningKey.from_string(self._privkey, curve=ecdsa.SECP256k1)
@@ -126,8 +151,42 @@ class Transaction:
         signer_infos.mode_info.single.mode = 1
         return signer_infos
 
-    def broadcast(self, url):
-        pushable_tx = self.get_pushable()
+    def get_api_pushable(self):
+
+        return json.dumps(
+            {"tx_bytes": self._get_tx_bytes(), "mode": self._sync_mode}
+        )
+
+    def get_rpc_pushable(self):
+        rpc_sync_modes = {
+            "BROADCAST_MODE_SYNC": "broadcast_tx_sync",
+            "BROADCAST_MODE_ASYNC": "broadcast_tx_async",
+            "BROADCAST_MODE_BLOCK": "broadcast_tx_commit"
+        }
+        return json.dumps(
+            {
+                "jsonrpc": "2.0",
+                "id": 1,
+                "method": rpc_sync_modes[self._sync_mode],
+                "params": {
+                    "tx": self._get_tx_bytes()
+                }
+            }
+        )
+
+    def broadcast_api(self, url):
+        pushable_tx = self.get_api_pushable()
+        res = requests.post(url=url, data=pushable_tx)
+        if res.status_code == 200:
+            res = res.json()
+            return res
+        else:
+            raise Exception(
+                "Broadcact failed to run by returning code of {}".format(res.status_code)
+            )
+
+    def broadcast_rpc(self, url):
+        pushable_tx = self.get_rpc_pushable()
         res = requests.post(url=url, data=pushable_tx)
         if res.status_code == 200:
             res = res.json()

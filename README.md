@@ -128,20 +128,30 @@ tx.add_transfer(
 tx.add_transfer(recipient="cosmos1lzumfk6xvwf9k9rk72mqtztv867xyem393um48", amount=123)
 
 
-# Submit the transaction
+# Submit the transaction through the rpc
 rpc_url = "https://rpc.cosmos.network/"
 
 # Method 1
-r = tx.broadcast(url=rpc_url)
+r = tx.broadcast_rpc(url=rpc_url)
 
 # Method 2
 import requests
 
-pushable_tx = tx.get_pushable()
+pushable_tx = tx.get_rpc_pushable()
 r = requests.post(rpc_url, data=pushable_tx)
+
+# Submit the transaction through the api
+rpc_api = "https://api.cosmos.network/"
+
+# Method 1
+r = tx.broadcast_api(url=rpc_api)
+
+# Method 2
+import requests
+
+pushable_tx = tx.get_api_pushable()
+r = requests.post(rpc_api, data=pushable_tx)
 ```
 
 One or more token transfers can be added to a transaction by calling the `add_transfer` method.
 
-When the transaction is fully prepared, calling `get_pushable` will return a signed transaction in the form of a JSON string.
-This can be used as request body when calling the `POST /txs` endpoint of the [Cosmos REST API](https://cosmos.network/rpc).
