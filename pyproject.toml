@@ -29,7 +29,6 @@ dependencies = [
     "typing-extensions >=3.7.4; python_version < '3.8'",
     "requests==2.26.0",
     "protobuf >= 3.19.1",
-    "google >= 3.0.0",
 
 ]
 

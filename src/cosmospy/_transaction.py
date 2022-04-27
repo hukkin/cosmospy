@@ -5,7 +5,6 @@ import hashlib
 import json
 
 import ecdsa
-import requests
 
 from cosmospy._typing import SyncMode
 from cosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_pubkey
@@ -173,25 +172,3 @@ class Transaction:
                 }
             }
         )
-
-    def broadcast_api(self, url):
-        pushable_tx = self.get_api_pushable()
-        res = requests.post(url=url, data=pushable_tx)
-        if res.status_code == 200:
-            res = res.json()
-            return res
-        else:
-            raise Exception(
-                "Broadcact failed to run by returning code of {}".format(res.status_code)
-            )
-
-    def broadcast_rpc(self, url):
-        pushable_tx = self.get_rpc_pushable()
-        res = requests.post(url=url, data=pushable_tx)
-        if res.status_code == 200:
-            res = res.json()
-            return res
-        else:
-            raise Exception(
-                "Broadcact failed to run by returning code of {}".format(res.status_code)
-            )
