@@ -151,22 +151,22 @@ class Transaction:
         return signer_infos
 
     def get_api_pushable(self):
-
+        api_sync_modes = {
+            "broadcast_tx_sync": "BROADCAST_MODE_SYNC",
+            "broadcast_tx_async": "BROADCAST_MODE_ASYNC",
+            "broadcast_tx_commit": "BROADCAST_MODE_BLOCK"
+        }
         return json.dumps(
-            {"tx_bytes": self._get_tx_bytes(), "mode": self._sync_mode}
+            {"tx_bytes": self._get_tx_bytes(), "mode": api_sync_modes[self._sync_mode]}
         )
 
     def get_rpc_pushable(self):
-        rpc_sync_modes = {
-            "BROADCAST_MODE_SYNC": "broadcast_tx_sync",
-            "BROADCAST_MODE_ASYNC": "broadcast_tx_async",
-            "BROADCAST_MODE_BLOCK": "broadcast_tx_commit"
-        }
+
         return json.dumps(
             {
                 "jsonrpc": "2.0",
                 "id": 1,
-                "method": rpc_sync_modes[self._sync_mode],
+                "method": self._sync_mode,
                 "params": {
                     "tx": self._get_tx_bytes()
                 }
