@@ -38,7 +38,7 @@ class Transaction:
             memo: str = "",
             chain_id: str = "cosmoshub-4",
             hrp: str = DEFAULT_BECH32_HRP,
-            sync_mode: SyncMode = "BROADCAST_MODE_SYNC",
+            sync_mode: SyncMode = "broadcast_tx_sync",
     ) -> None:
         self._privkey = privkey
         self._account_num = account_num
