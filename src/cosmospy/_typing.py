@@ -1,6 +1,5 @@
 import sys
 
-print(sys.version_info)
 if sys.version_info < (3, 8):
     from typing_extensions import Literal, TypedDict
 else:
