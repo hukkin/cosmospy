@@ -130,7 +130,7 @@ tx.add_transfer(recipient="cosmos1lzumfk6xvwf9k9rk72mqtztv867xyem393um48", amoun
 
 import requests
 
-# Submit the transaction through the rpc
+# Submit the transaction through the Tendermint RPC
 rpc_url = "https://rpc.cosmos.network/"
 pushable_tx = tx.get_rpc_pushable()
 r = requests.post(rpc_url, data=pushable_tx)
