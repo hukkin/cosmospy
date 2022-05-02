@@ -135,7 +135,7 @@ rpc_url = "https://rpc.cosmos.network/"
 pushable_tx = tx.get_rpc_pushable()
 r = requests.post(rpc_url, data=pushable_tx)
 
-# Submit the transaction through the api
+# Submit the transaction through the Cosmos REST API
 rpc_api = "https://api.cosmos.network/"
 pushable_tx = tx.get_api_pushable()
 r = requests.post(rpc_api, data=pushable_tx)
