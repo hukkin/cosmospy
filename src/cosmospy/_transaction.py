@@ -150,25 +150,3 @@ class Transaction:
         signer_infos.mode_info.single.mode = 1
         return signer_infos
 
-    def get_api_pushable(self):
-        api_sync_modes = {
-            "broadcast_tx_sync": "BROADCAST_MODE_SYNC",
-            "broadcast_tx_async": "BROADCAST_MODE_ASYNC",
-            "broadcast_tx_commit": "BROADCAST_MODE_BLOCK"
-        }
-        return json.dumps(
-            {"tx_bytes": self._get_tx_bytes(), "mode": api_sync_modes[self._sync_mode]}
-        )
-
-    def get_rpc_pushable(self):
-
-        return json.dumps(
-            {
-                "jsonrpc": "2.0",
-                "id": 1,
-                "method": self._sync_mode,
-                "params": {
-                    "tx": self._get_tx_bytes()
-                }
-            }
-        )
