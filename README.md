@@ -120,7 +120,6 @@ tx = Transaction(
     gas=70000,
     memo="",
     chain_id="cosmoshub-4",
-    sync_mode="sync",
 )
 tx.add_transfer(
     recipient="cosmos103l758ps7403sd9c0y8j6hrfw4xyl70j4mmwkf", amount=387000
@@ -128,18 +127,39 @@ tx.add_transfer(
 tx.add_transfer(recipient="cosmos1lzumfk6xvwf9k9rk72mqtztv867xyem393um48", amount=123)
 
 
-import requests
+import httpx
+import json
+
+tx_bytes = tx.get_tx_bytes()
+
 
 # Submit the transaction through the Tendermint RPC
 rpc_url = "https://rpc.cosmos.network/"
-pushable_tx = tx.get_rpc_pushable()
-r = requests.post(rpc_url, data=pushable_tx)
+pushable_tx = json.dumps(
+              {
+                "jsonrpc": "2.0",
+                "id": 1,
+                "method": "broadcast_tx_sync", # Available methods: broadcast_tx_sync, broadcast_tx_async, broadcast_tx_commit
+                "params": {
+                    "tx": tx_bytes
+                }
+              }
+            )
+r = httpx.post(rpc_url, data=pushable_tx)
 
 # Submit the transaction through the Cosmos REST API
-rpc_api = "https://api.cosmos.network/"
-pushable_tx = tx.get_api_pushable()
-r = requests.post(rpc_api, data=pushable_tx)
+rpc_api = "https://api.cosmos.network/cosmos/tx/v1beta1/txs"
+pushable_tx = json.dumps(
+                {
+                  "tx_bytes": tx_bytes, 
+                  "mode": "BROADCAST_MODE_SYNC" # Available modes: BROADCAST_MODE_SYNC, BROADCAST_MODE_ASYNC, BROADCAST_MODE_BLOCK
+                }
+              )
+r = httpx.post(rpc_api, data=pushable_tx)
 ```
 
 One or more token transfers can be added to a transaction by calling the `add_transfer` method.
+
+#### Note
+* The account number and sequence can be queried through following api endpoint: ``https://api.cosmos.network/cosmos/auth/v1beta1/accounts/{address}``
 

@@ -2,11 +2,9 @@ from __future__ import annotations
 
 import base64
 import hashlib
-import json
 
 import ecdsa
 
-from cosmospy._typing import SyncMode
 from cosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_pubkey
 import cosmospy.interfaces.any_pb2 as Any
 import cosmospy.interfaces.coin_pb2 as coin
@@ -34,22 +32,18 @@ class Transaction:
             fee: int,
             gas: int,
             fee_denom: str = "uatom",
-            fee_account: str = "",
             memo: str = "",
             chain_id: str = "cosmoshub-4",
             hrp: str = DEFAULT_BECH32_HRP,
-            sync_mode: SyncMode = "broadcast_tx_sync",
     ) -> None:
         self._privkey = privkey
         self._account_num = account_num
         self._sequence = sequence
         self._fee = fee
         self._fee_denom = fee_denom
-        self._fee_account = fee_account
         self._gas = gas
         self._chain_id = chain_id
         self._hrp = hrp
-        self._sync_mode = sync_mode
         self._tx_body = tx.TxBody()
         self._tx_body.memo = memo
         self._tx_raw = tx.TxRaw()
@@ -69,33 +63,8 @@ class Transaction:
         msg_any.type_url = "/cosmos.bank.v1beta1.MsgSend"
         self._tx_body.messages.append(msg_any)
 
-    def add_ibc_transfer(
-            self, recipient: str, amount: int, channel: str, denom: str = "uatom", hrp: str = DEFAULT_BECH32_HRP,
-            port: str = "transfer", timeout_height: int = 0, timeout_revision_number: int = 4,
-            timeout_timestamp: int = 0
-    ) -> None:
-        msg = ibc_transfer.MsgTransfer()
-        msg.source_port = port
-        msg.source_channel = channel
-        msg.sender = privkey_to_address(self._privkey, hrp=hrp)
-        msg.receiver = recipient
-        msg.token.denom = denom
-        msg.token.amount = str(amount)
 
-        if timeout_timestamp > 0:
-            msg.timeout_timestamp = timeout_timestamp
-        elif timeout_height > 0:
-            msg.timeout_height.revision_height = timeout_height
-            msg.timeout_height.revision_number = timeout_revision_number
-        else:
-            raise ValueError("You have to set either a timeout height or a timeout timestamp")
-
-        msg_any = Any.Any()
-        msg_any.Pack(msg)
-        msg_any.type_url = "/ibc.applications.transfer.v1.MsgTransfer"
-        self._tx_body.messages.append(msg_any)
-
-    def _get_tx_bytes(self) -> str:
+    def get_tx_bytes(self) -> str:
         self._tx_raw.body_bytes = self._tx_body.SerializeToString()
         self._tx_raw.auth_info_bytes = self._get_auth_info().SerializeToString()
         self._tx_raw.signatures.append(self._get_signatures())
@@ -125,8 +94,6 @@ class Transaction:
         _auth_info = tx.AuthInfo()
         _auth_info.signer_infos.append(self._get_signer_infos(self._get_pubkey()))
         _auth_info.fee.gas_limit = self._gas
-        if self._fee_account:
-            _auth_info.fee.granter = self._fee_account
         _auth_info.fee.amount.append(self._get_fee())
         return _auth_info
 
