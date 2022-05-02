@@ -49,7 +49,7 @@ class Transaction:
         self._tx_raw = tx.TxRaw()
 
     def add_transfer(
-            self, recipient: str, amount: int, denom: str = "uatom", hrp: str = DEFAULT_BECH32_HRP
+            self, recipient: str, amount: int, denom: str = "uatom"
     ) -> None:
         msg = transfer.MsgSend()
         msg.from_address = privkey_to_address(self._privkey, hrp=self._hrp)
