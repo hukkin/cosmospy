@@ -52,7 +52,7 @@ class Transaction:
             self, recipient: str, amount: int, denom: str = "uatom", hrp: str = DEFAULT_BECH32_HRP
     ) -> None:
         msg = transfer.MsgSend()
-        msg.from_address = privkey_to_address(self._privkey, hrp=hrp)
+        msg.from_address = privkey_to_address(self._privkey, hrp=self._hrp)
         msg.to_address = recipient
         _amount = coin.Coin()
         _amount.denom = denom
