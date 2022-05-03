@@ -9,7 +9,6 @@ from cosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_
 import cosmospy.interfaces.any_pb2 as Any
 import cosmospy.interfaces.coin_pb2 as coin
 import cosmospy.interfaces.msg_send_pb2 as transfer
-import cosmospy.interfaces.ibc_transfer_pb2 as ibc_transfer
 import cosmospy.interfaces.pubkey_pb2 as pubkey
 import cosmospy.interfaces.tx_pb2 as tx
 
