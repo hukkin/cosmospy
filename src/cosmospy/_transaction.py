@@ -6,11 +6,11 @@ import hashlib
 import ecdsa
 
 from cosmospy._wallet import DEFAULT_BECH32_HRP, privkey_to_address, privkey_to_pubkey
-import cosmospy.interfaces.any_pb2 as Any
-import cosmospy.interfaces.coin_pb2 as coin
-import cosmospy.interfaces.msg_send_pb2 as transfer
-import cosmospy.interfaces.pubkey_pb2 as pubkey
-import cosmospy.interfaces.tx_pb2 as tx
+import cosmospy._interfaces.any_pb2 as Any
+import cosmospy._interfaces.coin_pb2 as coin
+import cosmospy._interfaces.msg_send_pb2 as transfer
+import cosmospy._interfaces.pubkey_pb2 as pubkey
+import cosmospy._interfaces.tx_pb2 as tx
 
 
 class Transaction:

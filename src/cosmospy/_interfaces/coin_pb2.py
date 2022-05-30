@@ -12,10 +12,11 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import cosmospy.interfaces.gogo_pb2 as gogo__pb2
+import cosmospy._interfaces.gogo_pb2 as gogo__pb2
+import cosmospy._interfaces.cosmos_pb2 as cosmos__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ncoin.proto\x12\x13\x63osmos.base.v1beta1\x1a\ngogo.proto\"8\n\x04\x43oin\x12\r\n\x05\x64\x65nom\x18\x01 \x01(\t\x12\x1b\n\x06\x61mount\x18\x02 \x01(\tB\x0b\xda\xde\x1f\x03Int\xc8\xde\x1f\x00:\x04\xe8\xa0\x1f\x01\";\n\x07\x44\x65\x63\x43oin\x12\r\n\x05\x64\x65nom\x18\x01 \x01(\t\x12\x1b\n\x06\x61mount\x18\x02 \x01(\tB\x0b\xda\xde\x1f\x03\x44\x65\x63\xc8\xde\x1f\x00:\x04\xe8\xa0\x1f\x01\"$\n\x08IntProto\x12\x18\n\x03int\x18\x01 \x01(\tB\x0b\xda\xde\x1f\x03Int\xc8\xde\x1f\x00\"$\n\x08\x44\x65\x63Proto\x12\x18\n\x03\x64\x65\x63\x18\x01 \x01(\tB\x0b\xda\xde\x1f\x03\x44\x65\x63\xc8\xde\x1f\x00\x42,Z\"github.com/cosmos/cosmos-sdk/types\xd8\xe1\x1e\x00\x80\xe2\x1e\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ncoin.proto\x12\x13\x63osmos.base.v1beta1\x1a\ngogo.proto\x1a\x0c\x63osmos.proto\"F\n\x04\x43oin\x12\r\n\x05\x64\x65nom\x18\x01 \x01(\t\x12)\n\x06\x61mount\x18\x02 \x01(\tB\x19\xd2\xb4-\ncosmos.Int\xda\xde\x1f\x03Int\xc8\xde\x1f\x00:\x04\xe8\xa0\x1f\x01\"I\n\x07\x44\x65\x63\x43oin\x12\r\n\x05\x64\x65nom\x18\x01 \x01(\t\x12)\n\x06\x61mount\x18\x02 \x01(\tB\x19\xd2\xb4-\ncosmos.Dec\xda\xde\x1f\x03\x44\x65\x63\xc8\xde\x1f\x00:\x04\xe8\xa0\x1f\x01\"2\n\x08IntProto\x12&\n\x03int\x18\x01 \x01(\tB\x19\xd2\xb4-\ncosmos.Int\xda\xde\x1f\x03Int\xc8\xde\x1f\x00\"2\n\x08\x44\x65\x63Proto\x12&\n\x03\x64\x65\x63\x18\x01 \x01(\tB\x19\xd2\xb4-\ncosmos.Dec\xda\xde\x1f\x03\x44\x65\x63\xc8\xde\x1f\x00\x42,Z\"github.com/cosmos/cosmos-sdk/types\xd8\xe1\x1e\x00\x80\xe2\x1e\x00\x62\x06proto3')
 
 
 
@@ -56,23 +57,23 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z\"github.com/cosmos/cosmos-sdk/types\330\341\036\000\200\342\036\000'
   _COIN.fields_by_name['amount']._options = None
-  _COIN.fields_by_name['amount']._serialized_options = b'\332\336\037\003Int\310\336\037\000'
+  _COIN.fields_by_name['amount']._serialized_options = b'\322\264-\ncosmos.Int\332\336\037\003Int\310\336\037\000'
   _COIN._options = None
   _COIN._serialized_options = b'\350\240\037\001'
   _DECCOIN.fields_by_name['amount']._options = None
-  _DECCOIN.fields_by_name['amount']._serialized_options = b'\332\336\037\003Dec\310\336\037\000'
+  _DECCOIN.fields_by_name['amount']._serialized_options = b'\322\264-\ncosmos.Dec\332\336\037\003Dec\310\336\037\000'
   _DECCOIN._options = None
   _DECCOIN._serialized_options = b'\350\240\037\001'
   _INTPROTO.fields_by_name['int']._options = None
-  _INTPROTO.fields_by_name['int']._serialized_options = b'\332\336\037\003Int\310\336\037\000'
+  _INTPROTO.fields_by_name['int']._serialized_options = b'\322\264-\ncosmos.Int\332\336\037\003Int\310\336\037\000'
   _DECPROTO.fields_by_name['dec']._options = None
-  _DECPROTO.fields_by_name['dec']._serialized_options = b'\332\336\037\003Dec\310\336\037\000'
-  _COIN._serialized_start=47
-  _COIN._serialized_end=103
-  _DECCOIN._serialized_start=105
-  _DECCOIN._serialized_end=164
-  _INTPROTO._serialized_start=166
-  _INTPROTO._serialized_end=202
-  _DECPROTO._serialized_start=204
-  _DECPROTO._serialized_end=240
+  _DECPROTO.fields_by_name['dec']._serialized_options = b'\322\264-\ncosmos.Dec\332\336\037\003Dec\310\336\037\000'
+  _COIN._serialized_start=61
+  _COIN._serialized_end=131
+  _DECCOIN._serialized_start=133
+  _DECCOIN._serialized_end=206
+  _INTPROTO._serialized_start=208
+  _INTPROTO._serialized_end=258
+  _DECPROTO._serialized_start=260
+  _DECPROTO._serialized_end=310
 # @@protoc_insertion_point(module_scope)

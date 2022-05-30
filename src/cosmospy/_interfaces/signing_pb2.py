@@ -13,17 +13,19 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import cosmospy.interfaces.any_pb2 as any__pb2
+import cosmospy._interfaces.any_pb2 as any__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rsigning.proto\x12\x19\x63osmos.tx.signing.v1beta1\x1a\tany.proto\"Z\n\x14SignatureDescriptors\x12\x42\n\nsignatures\x18\x01 \x03(\x0b\x32..cosmos.tx.signing.v1beta1.SignatureDescriptor\"\xc2\x02\n\x13SignatureDescriptor\x12(\n\npublic_key\x18\x01 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x41\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x33.cosmos.tx.signing.v1beta1.SignatureDescriptor.Data\x12\x10\n\x08sequence\x18\x03 \x01(\x04\x1a\xab\x01\n\x04\x44\x61ta\x12L\n\x06single\x18\x01 \x01(\x0b\x32:.cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.SingleH\x00\x1aN\n\x06Single\x12\x31\n\x04mode\x18\x01 \x01(\x0e\x32#.cosmos.tx.signing.v1beta1.SignMode\x12\x11\n\tsignature\x18\x02 \x01(\x0c\x42\x05\n\x03sum*s\n\x08SignMode\x12\x19\n\x15SIGN_MODE_UNSPECIFIED\x10\x00\x12\x14\n\x10SIGN_MODE_DIRECT\x10\x01\x12\x15\n\x11SIGN_MODE_TEXTUAL\x10\x02\x12\x1f\n\x1bSIGN_MODE_LEGACY_AMINO_JSON\x10\x7f\x42/Z-github.com/cosmos/cosmos-sdk/types/tx/signingb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rsigning.proto\x12\x19\x63osmos.tx.signing.v1beta1\x1a\tany.proto\"Z\n\x14SignatureDescriptors\x12\x42\n\nsignatures\x18\x01 \x03(\x0b\x32..cosmos.tx.signing.v1beta1.SignatureDescriptor\"\xc2\x02\n\x13SignatureDescriptor\x12(\n\npublic_key\x18\x01 \x01(\x0b\x32\x14.google.protobuf.Any\x12\x41\n\x04\x64\x61ta\x18\x02 \x01(\x0b\x32\x33.cosmos.tx.signing.v1beta1.SignatureDescriptor.Data\x12\x10\n\x08sequence\x18\x03 \x01(\x04\x1a\xab\x01\n\x04\x44\x61ta\x12L\n\x06single\x18\x01 \x01(\x0b\x32:.cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.SingleH\x00\x1aN\n\x06Single\x12\x31\n\x04mode\x18\x01 \x01(\x0e\x32#.cosmos.tx.signing.v1beta1.SignMode\x12\x11\n\tsignature\x18\x02 \x01(\x0c\x42\x05\n\x03sum*\xa5\x01\n\x08SignMode\x12\x19\n\x15SIGN_MODE_UNSPECIFIED\x10\x00\x12\x14\n\x10SIGN_MODE_DIRECT\x10\x01\x12\x15\n\x11SIGN_MODE_TEXTUAL\x10\x02\x12\x18\n\x14SIGN_MODE_DIRECT_AUX\x10\x03\x12\x1f\n\x1bSIGN_MODE_LEGACY_AMINO_JSON\x10\x7f\x12\x16\n\x11SIGN_MODE_EIP_191\x10\xbf\x01\x42/Z-github.com/cosmos/cosmos-sdk/types/tx/signingb\x06proto3')
 
 _SIGNMODE = DESCRIPTOR.enum_types_by_name['SignMode']
 SignMode = enum_type_wrapper.EnumTypeWrapper(_SIGNMODE)
 SIGN_MODE_UNSPECIFIED = 0
 SIGN_MODE_DIRECT = 1
 SIGN_MODE_TEXTUAL = 2
+SIGN_MODE_DIRECT_AUX = 3
 SIGN_MODE_LEGACY_AMINO_JSON = 127
+SIGN_MODE_EIP_191 = 191
 
 
 _SIGNATUREDESCRIPTORS = DESCRIPTOR.message_types_by_name['SignatureDescriptors']
@@ -64,8 +66,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z-github.com/cosmos/cosmos-sdk/types/tx/signing'
-  _SIGNMODE._serialized_start=472
-  _SIGNMODE._serialized_end=587
+  _SIGNMODE._serialized_start=473
+  _SIGNMODE._serialized_end=638
   _SIGNATUREDESCRIPTORS._serialized_start=55
   _SIGNATUREDESCRIPTORS._serialized_end=145
   _SIGNATUREDESCRIPTOR._serialized_start=148

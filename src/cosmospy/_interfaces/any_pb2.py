@@ -12,7 +12,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import cosmospy.interfaces.gogo_pb2 as gogo__pb2
+import cosmospy._interfaces.gogo_pb2 as gogo__pb2
 
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tany.proto\x12\x0fgoogle.protobuf\x1a\ngogo.proto\",\n\x03\x41ny\x12\x10\n\x08type_url\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x0c:\x04\xf0\xa1\x1f\x00\x42S\n\x13\x63om.google.protobufB\x08\x41nyProtoP\x01Z\x05types\xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypes\xc0\xe3\x1e\x00\x62\x06proto3')

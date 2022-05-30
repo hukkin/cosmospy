@@ -15,3 +15,8 @@ message PubKey {
 
   bytes key = 1;
 }
+
+// PrivKey defines a secp256k1 private key.
+message PrivKey {
+  bytes key = 1;
+}

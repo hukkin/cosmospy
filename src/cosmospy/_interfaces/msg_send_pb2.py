@@ -12,11 +12,14 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import cosmospy.interfaces.gogo_pb2 as gogo__pb2
-import cosmospy.interfaces.coin_pb2 as coin__pb2
+import cosmospy._interfaces.gogo_pb2 as gogo__pb2
+import cosmospy._interfaces.coin_pb2 as coin__pb2
+import cosmospy._interfaces.cosmos_pb2 as cosmos__pb2
+import cosmospy._interfaces.msg_pb2 as msg__pb2
+from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0emsg_send.proto\x12\x13\x63osmos.bank.v1beta1\x1a\ngogo.proto\x1a\ncoin.proto\"\xca\x01\n\x07MsgSend\x12-\n\x0c\x66rom_address\x18\x01 \x01(\tB\x17\xf2\xde\x1f\x13yaml:\"from_address\"\x12)\n\nto_address\x18\x02 \x01(\tB\x15\xf2\xde\x1f\x11yaml:\"to_address\"\x12[\n\x06\x61mount\x18\x03 \x03(\x0b\x32\x19.cosmos.base.v1beta1.CoinB0\xc8\xde\x1f\x00\xaa\xdf\x1f(github.com/cosmos/cosmos-sdk/types.Coins:\x08\xe8\xa0\x1f\x00\x88\xa0\x1f\x00\x42+Z)github.com/cosmos/cosmos-sdk/x/bank/typesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0emsg_send.proto\x12\x13\x63osmos.bank.v1beta1\x1a\ngogo.proto\x1a\ncoin.proto\x1a\x0c\x63osmos.proto\x1a\tmsg.proto\x1a google/protobuf/descriptor.proto\"\xdf\x01\n\x07MsgSend\x12.\n\x0c\x66rom_address\x18\x01 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12,\n\nto_address\x18\x02 \x01(\tB\x18\xd2\xb4-\x14\x63osmos.AddressString\x12[\n\x06\x61mount\x18\x03 \x03(\x0b\x32\x19.cosmos.base.v1beta1.CoinB0\xc8\xde\x1f\x00\xaa\xdf\x1f(github.com/cosmos/cosmos-sdk/types.Coins:\x19\x82\xe7\xb0*\x0c\x66rom_address\xe8\xa0\x1f\x00\x88\xa0\x1f\x00\x42+Z)github.com/cosmos/cosmos-sdk/x/bank/typesb\x06proto3')
 
 
 
@@ -33,13 +36,13 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z)github.com/cosmos/cosmos-sdk/x/bank/types'
   _MSGSEND.fields_by_name['from_address']._options = None
-  _MSGSEND.fields_by_name['from_address']._serialized_options = b'\362\336\037\023yaml:\"from_address\"'
+  _MSGSEND.fields_by_name['from_address']._serialized_options = b'\322\264-\024cosmos.AddressString'
   _MSGSEND.fields_by_name['to_address']._options = None
-  _MSGSEND.fields_by_name['to_address']._serialized_options = b'\362\336\037\021yaml:\"to_address\"'
+  _MSGSEND.fields_by_name['to_address']._serialized_options = b'\322\264-\024cosmos.AddressString'
   _MSGSEND.fields_by_name['amount']._options = None
   _MSGSEND.fields_by_name['amount']._serialized_options = b'\310\336\037\000\252\337\037(github.com/cosmos/cosmos-sdk/types.Coins'
   _MSGSEND._options = None
-  _MSGSEND._serialized_options = b'\350\240\037\000\210\240\037\000'
-  _MSGSEND._serialized_start=64
-  _MSGSEND._serialized_end=266
+  _MSGSEND._serialized_options = b'\202\347\260*\014from_address\350\240\037\000\210\240\037\000'
+  _MSGSEND._serialized_start=123
+  _MSGSEND._serialized_end=346
 # @@protoc_insertion_point(module_scope)
