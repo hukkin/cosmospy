@@ -57,7 +57,7 @@ def privkey_to_pubkey(privkey: bytes) -> bytes:
 
 def pubkey_to_address(pubkey: bytes, *, hrp: str = DEFAULT_BECH32_HRP) -> str:
     s = hashlib.new("sha256", pubkey).digest()
-    r = hashlib.new("ripemd160", s).digest()
+    r = hashlib.new("sha256", s).digest()
     five_bit_r = bech32.convertbits(r, 8, 5)
     assert five_bit_r is not None, "Unsuccessful bech32.convertbits call"
     return bech32.bech32_encode(hrp, five_bit_r)
